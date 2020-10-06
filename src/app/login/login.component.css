@@ -1,0 +1,10 @@
+.login {
+  height: auto;
+  width: 500px;
+  padding-top: 10px;
+}
+
+.titulo {
+  position: center;
+  font-size: 30px;
+}

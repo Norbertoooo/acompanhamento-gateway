@@ -1,0 +1,19 @@
+<div class="login">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title titulo"> Login</div>
+    </div>
+    <div class="card-body">
+      <a>Usuario</a>
+      <input type="text" class="form-control" [(ngModel)]="login.usuario">
+      <a>Senha</a>
+      <input type="password" class="form-control" [(ngModel)]="login.senha">
+
+      <button type="submit" class="btn badge-success" (click)="ExibirLoginDigitado()"> Entrar </button>
+    </div>
+    <div class="card-footer">
+      <a href="#">Esqueceu a senha?</a>
+      <a href="#">Criar conta</a>
+    </div>
+  </div>
+</div>

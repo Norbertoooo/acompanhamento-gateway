@@ -1,6 +1,5 @@
 .footer {
-  background-color: lightsteelblue;
   width: 100%;
-  position: relative;
+  position: fixed;
   bottom: 0;
 }
