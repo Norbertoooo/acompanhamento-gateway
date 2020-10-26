@@ -1,19 +1,20 @@
 <div class="login">
   <div class="card">
     <div class="card-header">
-      <div class="card-title titulo"> Login</div>
+      <div class="card-title titulo"> Login </div>
     </div>
     <div class="card-body">
-      <a>Usuario</a>
-      <input type="text" class="form-control" [(ngModel)]="login.usuario">
-      <a>Senha</a>
+      <span>Email</span>
+      <input type="email" class="form-control" [(ngModel)]="login.email">
+      <span>Senha</span>
       <input type="password" class="form-control" [(ngModel)]="login.senha">
-
-      <button type="submit" class="btn badge-success" (click)="ExibirLoginDigitado()"> Entrar </button>
+      <div style="text-align: center">
+        <button type="submit" class="btn badge-success botao-login" (click)="ExibirLoginDigitado(); logar()"> Entrar </button>
+      </div>
     </div>
     <div class="card-footer">
-      <a href="#">Esqueceu a senha?</a>
-      <a href="#">Criar conta</a>
+      <a href="/senha/recuperar">Esqueceu a senha?</a>
+      <a href="/criar-conta">Criar conta</a>
     </div>
   </div>
 </div>

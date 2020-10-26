@@ -1,4 +1,7 @@
 export class LoginModel {
-  usuario: string;
+  id: number;
+  email: string;
   senha: string;
+  papel: string;
+  token: string;
 }

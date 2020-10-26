@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {LoginModel} from '../model/login.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,13 +12,17 @@ export class LoginComponent implements OnInit {
   @Input()
   login: LoginModel = new LoginModel();
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
   ExibirLoginDigitado(): void {
     console.log(this.login);
+  }
+
+  logar(): void {
+    this.router.navigateByUrl('/dashboard');
   }
 
 }
