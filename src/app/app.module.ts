@@ -7,7 +7,9 @@ import { NavbarComponent } from './template/navbar/navbar.component';
 import { FooterComponent } from './template/footer/footer.component';
 import { PrincipalComponent } from './template/principal/principal.component';
 import { LoginComponent } from './login/login.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {RegistrarComponent} from './registrar/registrar.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,15 @@ import {FormsModule} from '@angular/forms';
     NavbarComponent,
     FooterComponent,
     PrincipalComponent,
-    LoginComponent
+    LoginComponent,
+    RegistrarComponent
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule
     ],
   providers: [],
   bootstrap: [AppComponent]

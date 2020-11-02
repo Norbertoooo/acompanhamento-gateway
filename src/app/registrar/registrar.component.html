@@ -1,0 +1,15 @@
+<form [formGroup] = formulario>
+  <label> Email
+    <input type="email" formControlName="email" class="form-control">
+  </label>
+  <label> Senha
+    <input type="password" formControlName="senha" class="form-control">
+  </label>
+  <label> Responsavel
+    <input type="radio" value="RESPONSAVEL" formControlName="perfil">
+  </label>
+  <label> Terapeuta
+    <input type="radio" value="TERAPEUTA" formControlName="perfil">
+  </label>
+  <button type="submit" class="btn btn-primary" (click)="registrar()">Registar</button>
+</form>

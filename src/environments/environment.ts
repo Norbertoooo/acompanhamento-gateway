@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrls: 'http://localhost:8081'
+  apiUrl: 'http://localhost:8081/api/dados'
 };
 
 /*
