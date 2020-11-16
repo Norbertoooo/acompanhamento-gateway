@@ -1,8 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {LoginModel} from '../model/login.model';
+import {UsuarioModel} from '../model/usuario.model';
 import {Router} from '@angular/router';
 import {DadosService} from '../service/dados.service';
 import {LoginService} from '../service/login.service';
+import {AuthenticationService} from '../helpers/AuthenticationService';
 
 @Component({
   selector: 'app-login',
@@ -10,24 +11,20 @@ import {LoginService} from '../service/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  // todo utilizar reactive forms
   @Input()
-  login: LoginModel = new LoginModel();
+  login: UsuarioModel = new UsuarioModel();
   dados: string;
 
-  constructor(private router: Router, private dadosService: DadosService, private loginService: LoginService) { }
+  constructor(private router: Router, private dadosService: DadosService, private a: AuthenticationService) { }
 
   ngOnInit(): void {
     this.dadosService.dados().subscribe( (result) => { this.dados = result; } );
   }
 
-  ExibirLoginDigitado(): void {
-    console.log(this.login);
-  }
-
   logar(): void {
-    this.loginService.login(this.login).subscribe(
-      (result) => console.log(result)
+    this.a.login(this.login.email, this.login.senha).subscribe(
+      (result) => console.log(result), (error) => (console.log(error))
     );
     // this.router.navigateByUrl('/dashboard');
   }

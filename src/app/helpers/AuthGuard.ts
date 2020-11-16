@@ -1,0 +1,20 @@
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
+import {Observable} from 'rxjs';
+import {AuthenticationService} from './AuthenticationService';
+
+export class AuthGuard implements CanActivate {
+
+  constructor(private router: Router, private authenticationService: AuthenticationService) {
+  }
+
+  canActivate(route: ActivatedRouteSnapshot,
+              state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    const currentUser = this.authenticationService.currentUserValue;
+    if (currentUser) {
+      return true;
+    }
+    this.router.navigateByUrl('/', {queryParams: {returnUrl: state.url}});
+    return false;
+  }
+
+}
