@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="cadastro">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title titulo"> Cadastro de novo usuário</div>
+      </div>
+      <div class="card-body">
+        <form [formGroup]=formularioCadastro>
+
+          <div>
+            <label> Email
+              <input type="email" formControlName="email" class="form-control">
+            </label>
+          </div>
+
+          <label> Senha
+            <input type="password" formControlName="senha" autocomplete="on" class="form-control">
+          </label>
+          <label> Responsável
+            <input type="radio" value="RESPONSAVEL" formControlName="perfil">
+          </label>
+          <label> Terapeuta
+            <input type="radio" value="TERAPEUTA" formControlName="perfil">
+          </label>
+          <div style="text-align: center">
+            <button type="submit" class="btn btn-primary botao-cadastrar" [disabled]="formularioCadastro.invalid" (click)="cadastrar()">
+              Cadastrar
+            </button>
+          </div>
+          <div *ngIf="formularioCadastro.invalid">
+            <h5> Por Favor, Preencha todos os campos</h5>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

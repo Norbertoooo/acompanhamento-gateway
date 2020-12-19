@@ -1,26 +1,26 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {UsuarioModel} from '../model/usuario.model';
+import {LoginModel} from '../model/loginModel';
 import {Observable} from 'rxjs';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private loginUrl = 'http://localhost:8081/autenticar';
+  private loginUrl = environment.apiUrlBase.concat('/login');
 
-  private registrarUrl = 'http://localhost:8081/registrar';
-
+  private registrarUrl = environment.apiUrlBase.concat('/cadastrar');
 
   constructor(private http: HttpClient) {
   }
 
-  login(login: UsuarioModel): Observable<any> {
-    return this.http.post(this.loginUrl, login);
+  login(login: LoginModel): Observable<any> {
+    return this.http.post(this.loginUrl, login).pipe();
   }
 
-  registrar(request: any): Observable<any> {
-    return this.http.post(this.registrarUrl, request);
+  cadastrar(request: any): Observable<any> {
+    return this.http.post(this.registrarUrl, request).pipe();
   }
 }

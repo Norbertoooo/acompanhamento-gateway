@@ -1,9 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {UsuarioModel} from '../model/usuario.model';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {DadosService} from '../service/dados.service';
-import {LoginService} from '../service/login.service';
-import {AuthenticationService} from '../helpers/AuthenticationService';
+import {AuthenticationService} from '../helpers/authentication.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,22 +10,33 @@ import {AuthenticationService} from '../helpers/AuthenticationService';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  // todo utilizar reactive forms
-  @Input()
-  login: UsuarioModel = new UsuarioModel();
-  dados: string;
 
-  constructor(private router: Router, private dadosService: DadosService, private a: AuthenticationService) { }
+  formularioLogin: FormGroup;
+
+  constructor(private router: Router,
+              private dadosService: DadosService,
+              private authenticationService: AuthenticationService,
+              private formBuilder: FormBuilder) {
+  }
 
   ngOnInit(): void {
-    this.dadosService.dados().subscribe( (result) => { this.dados = result; } );
+    this.formularioLogin = this.formBuilder.group({
+      email: [null, [Validators.required, Validators.email]],
+      senha: [null, Validators.required]
+    });
   }
 
   logar(): void {
-    this.a.login(this.login.email, this.login.senha).subscribe(
-      (result) => console.log(result), (error) => (console.log(error))
+    console.log(this.formularioLogin.value);
+    this.authenticationService.login(this.formularioLogin.value).subscribe(
+      (result) => {
+        console.log(result);
+        this.router.navigateByUrl('/dashboard-terapeuta').then();
+      }, (error) => (console.log(error))
     );
-    // this.router.navigateByUrl('/dashboard');
+  }
+  registrar(): void {
+    this.router.navigateByUrl('/registrar').then();
   }
 
 }

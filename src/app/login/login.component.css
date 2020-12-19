@@ -1,17 +1,16 @@
-
-.titulo {
-  text-align: center;
-  font-size: 30px;
-}
-
 .login {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
+  margin-top: 5%;
 }
 
-.botao-login {
- margin-top: 10px;
+.alerta {
+  border: 1px solid red;
 }
 
+.centralizar {
+  display: flex;
+  justify-content: center;
+}
+
+.tamanho {
+  width: 350px;
+}

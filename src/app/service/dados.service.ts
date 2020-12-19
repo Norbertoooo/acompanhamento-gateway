@@ -12,7 +12,7 @@ export class DadosService {
   }
 
   dados(): Observable<any> {
-    return this.http.get(environment.apiUrl);
+    return this.http.get(environment.apiUrlBase);
   }
 
 }

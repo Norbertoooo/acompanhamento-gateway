@@ -9,9 +9,11 @@ import {PrincipalComponent} from './template/principal/principal.component';
 import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {RegistrarComponent} from './registrar/registrar.component';
-import {JwtInterceptor} from './helpers/JwtInterceptor';
-import {ErrorInterceptor} from './helpers/ErrorInterceptor';
+import {CadastrarComponent} from './cadastrar/cadastrar.component';
+import {JwtInterceptor} from './helpers';
+import {ErrorInterceptor} from './helpers';
+import { DashboardTerapeutaComponent } from './dashboard-terapeuta/dashboard-terapeuta.component';
+import {AuthenticationService} from './helpers/authentication.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import {ErrorInterceptor} from './helpers/ErrorInterceptor';
     FooterComponent,
     PrincipalComponent,
     LoginComponent,
-    RegistrarComponent
+    CadastrarComponent,
+    DashboardTerapeutaComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +35,7 @@ import {ErrorInterceptor} from './helpers/ErrorInterceptor';
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

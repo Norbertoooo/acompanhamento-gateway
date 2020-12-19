@@ -1,6 +1,6 @@
-export class UsuarioModel {
+export class LoginModel {
   email: string;
   senha: string;
   perfil: string;
-  token: string;
+  jwtToken: string;
 }

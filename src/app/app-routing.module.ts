@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {RegistrarComponent} from './registrar/registrar.component';
+import {CadastrarComponent} from './cadastrar/cadastrar.component';
 import {LoginComponent} from './login/login.component';
-import {AuthGuard} from './helpers/AuthGuard';
+import {DashboardTerapeutaComponent} from './dashboard-terapeuta/dashboard-terapeuta.component';
+import {AuthGuard} from './helpers';
 
 const routes: Routes = [
-  {path: 'registrar', component: RegistrarComponent},
-  {path: '', component: LoginComponent}
-
+  {path: 'registrar', component: CadastrarComponent},
+  {path: '', component: LoginComponent},
+  {path: 'dashboard-terapeuta', component: DashboardTerapeutaComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
