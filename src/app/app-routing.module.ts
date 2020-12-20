@@ -7,7 +7,7 @@ import {AuthGuard} from './helpers';
 import {SobreProjetoComponent} from './sobre-projeto/sobre-projeto.component';
 
 const routes: Routes = [
-  {path: 'registrar', component: CadastrarComponent},
+  {path: 'cadastrar', component: CadastrarComponent},
   {path: '', component: LoginComponent},
   {path: 'sobre', component: SobreProjetoComponent},
   {path: 'dashboard-terapeuta', component: DashboardTerapeutaComponent, canActivate: [AuthGuard]}
