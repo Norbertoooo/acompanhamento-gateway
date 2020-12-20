@@ -1,0 +1,17 @@
+.centralizar {
+  display: flex;
+  justify-content: center;
+}
+
+.sobre-descricao {
+  font-size: large;
+  text-align: justify;
+}
+
+.margem-imagem {
+  margin-top: 3%;
+}
+
+.margem-sobre {
+  margin-top: 5%;
+}

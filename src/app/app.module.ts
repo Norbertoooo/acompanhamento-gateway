@@ -14,6 +14,7 @@ import {JwtInterceptor} from './helpers';
 import {ErrorInterceptor} from './helpers';
 import { DashboardTerapeutaComponent } from './dashboard-terapeuta/dashboard-terapeuta.component';
 import {AuthenticationService} from './helpers/authentication.service';
+import { SobreProjetoComponent } from './sobre-projeto/sobre-projeto.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {AuthenticationService} from './helpers/authentication.service';
     PrincipalComponent,
     LoginComponent,
     CadastrarComponent,
-    DashboardTerapeutaComponent
+    DashboardTerapeutaComponent,
+    SobreProjetoComponent
   ],
   imports: [
     BrowserModule,
