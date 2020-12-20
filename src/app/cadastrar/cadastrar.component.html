@@ -1,37 +1,47 @@
 <div class="container-fluid">
-  <div class="cadastro">
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title titulo"> Cadastro de novo usuário</div>
+
+  <div class="row">
+    <div class="col-3" style="margin-top: 3%">
+      <img class="img-fluid" src="assets/imagens/logo-tea.jpg" alt="logo-tea">
+    </div>
+    <div class="col pt-5 mt-5" style="text-align: center">
+
+      <div class="pb-4">
+        <h1>Bem vindo a plataforma web da R.A.F.A</h1>
+        <h3> Cadastrar novo usuário</h3>
       </div>
-      <div class="card-body">
-        <form [formGroup]=formularioCadastro>
 
-          <div>
-            <label> Email
-              <input type="email" formControlName="email" class="form-control">
-            </label>
+      <div class="form-group centralizar" >
+        <form [formGroup]="formularioCadastro">
+          <div class="row pb-3" >
+            <label for="email"></label>
+            <input id="email" type=email class="form-control tamanho" placeholder="Email" formControlName="email">
           </div>
-
-          <label> Senha
-            <input type="password" formControlName="senha" autocomplete="on" class="form-control">
-          </label>
-          <label> Responsável
-            <input type="radio" value="RESPONSAVEL" formControlName="perfil">
-          </label>
-          <label> Terapeuta
-            <input type="radio" value="TERAPEUTA" formControlName="perfil">
-          </label>
-          <div style="text-align: center">
-            <button type="submit" class="btn btn-primary botao-cadastrar" [disabled]="formularioCadastro.invalid" (click)="cadastrar()">
-              Cadastrar
-            </button>
+          <div class="row">
+            <label for="senha"></label>
+            <input id="senha" autocomplete="current password" type=password class="form-control" placeholder="Senha"
+                   formControlName="senha">
           </div>
-          <div *ngIf="formularioCadastro.invalid">
-            <h5> Por Favor, Preencha todos os campos</h5>
+          <div class="row pt-3">
+            <div class="form-check form-check-inline pl-5 pr-5">
+              <input class="form-check-input" type="radio" id="responsavel" value="RESPONSAVEL" formControlName="perfil">
+              <label class="form-check-label" for="responsavel">Responsável</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="terapeuta" value="TERAPEUTA" formControlName="perfil">
+              <label class="form-check-label" for="terapeuta">Terapeuta</label>
+            </div>
           </div>
         </form>
       </div>
+      <div style="text-align: center">
+        <button type=submit class="btn btn-primary mr-3" [disabled]="formularioCadastro.invalid" (click)="cadastrar()"> Cadastrar</button>
+      </div>
+    </div>
+    <div class="col-3">
     </div>
   </div>
 </div>
+
+
+

@@ -6,11 +6,11 @@
     </div>
     <div class="col pt-5 login" style="text-align: center">
 
-      <div class="pb-2">
+      <div class="pb-4">
         <h1>Bem vindo a plataforma web da R.A.F.A</h1>
       </div>
 
-      <div class="form-group centralizar " >
+      <div class="form-group centralizar">
         <form [formGroup]="formularioLogin">
           <div class="row pb-3" >
             <label for="email"></label>
@@ -29,7 +29,7 @@
       </div>
       <div style="text-align: center">
         <button type=submit class="btn btn-primary mr-3" (click)="registrar()"> Registrar</button>
-        <button type=submit class="btn btn-primary" (click)="logar()"> Entrar</button>
+        <button type=submit class="btn btn-primary" [disabled]="formularioLogin.invalid" (click)="logar()"> Entrar</button>
       </div>
     </div>
     <div class="col-3">
