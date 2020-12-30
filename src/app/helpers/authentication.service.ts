@@ -3,7 +3,7 @@ import {BehaviorSubject, config, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
-import {LoginModel} from '../model/loginModel';
+import {LoginModel} from '../model/login.model';
 
 @Injectable()
 export class AuthenticationService {

@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
       }, (error) => (console.log(error))
     );
   }
+
   cadastrar(): void {
     this.router.navigateByUrl('/cadastrar').then();
   }

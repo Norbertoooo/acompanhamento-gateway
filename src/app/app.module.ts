@@ -15,6 +15,10 @@ import {ErrorInterceptor} from './helpers';
 import { DashboardTerapeutaComponent } from './dashboard-terapeuta/dashboard-terapeuta.component';
 import {AuthenticationService} from './helpers/authentication.service';
 import { SobreProjetoComponent } from './sobre-projeto/sobre-projeto.component';
+import {PacienteModalComponent} from './dashboard-terapeuta/paciente-modal/paciente-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {FichaModalComponent} from './dashboard-terapeuta/ficha-modal/ficha-modal.component';
+import {ResponsavelModalComponent} from './dashboard-terapeuta/responsavel-modal/responsavel-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +29,18 @@ import { SobreProjetoComponent } from './sobre-projeto/sobre-projeto.component';
     LoginComponent,
     CadastrarComponent,
     DashboardTerapeutaComponent,
-    SobreProjetoComponent
+    SobreProjetoComponent,
+    PacienteModalComponent,
+    FichaModalComponent,
+    ResponsavelModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
