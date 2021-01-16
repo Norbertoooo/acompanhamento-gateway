@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -19,6 +19,12 @@ import {PacienteModalComponent} from './dashboard-terapeuta/paciente-modal/pacie
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FichaModalComponent} from './dashboard-terapeuta/ficha-modal/ficha-modal.component';
 import {ResponsavelModalComponent} from './dashboard-terapeuta/responsavel-modal/responsavel-modal.component';
+import {registerLocaleData} from '@angular/common';
+import localePtBr from '@angular/common/locales/pt';
+import {CadastrarPacienteModalComponent} from './dashboard-terapeuta/cadastrar-paciente-modal/cadastrar-paciente-modal.component';
+import {PacienteService} from './service/paciente.service';
+
+registerLocaleData(localePtBr, 'pt-BR');
 
 @NgModule({
   declarations: [
@@ -32,7 +38,8 @@ import {ResponsavelModalComponent} from './dashboard-terapeuta/responsavel-modal
     SobreProjetoComponent,
     PacienteModalComponent,
     FichaModalComponent,
-    ResponsavelModalComponent
+    ResponsavelModalComponent,
+    CadastrarPacienteModalComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +52,8 @@ import {ResponsavelModalComponent} from './dashboard-terapeuta/responsavel-modal
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-    AuthenticationService
+    {provide: LOCALE_ID, useValue: 'pt-BR' },
+    AuthenticationService, PacienteService
   ],
   bootstrap: [AppComponent]
 })

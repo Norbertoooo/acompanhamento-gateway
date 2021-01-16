@@ -12,4 +12,7 @@ export class TerapeutaModel {
   formacao?: string;
   endereco?: EnderecoModel;
   login?: LoginModel;
+  crfa?: string;
+  loginEmail?: string;
+  dataNascimento?: Date;
 }

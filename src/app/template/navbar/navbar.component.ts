@@ -16,4 +16,12 @@ export class NavbarComponent implements OnInit {
   sobre(): void {
     this.router.navigateByUrl('/sobre').then();
   }
+
+  usuarioLogado(): string {
+    return localStorage.getItem('emailLogado');
+  }
+
+  logout() {
+
+  }
 }

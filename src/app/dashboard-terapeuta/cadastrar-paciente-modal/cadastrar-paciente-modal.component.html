@@ -1,0 +1,32 @@
+<div class="modal-open">
+  <div class="modal-header">
+    <h3>Cadastrar novo paciente</h3>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formularioCadastroPaciente">
+
+      <div class="form-inline">
+        <label for="nomeCompleto"> Nome Completo: </label>
+        <input id="nomeCompleto" class="form-control ml-2" type="text" formControlName="nomeCompleto">
+      </div>
+
+      <div class="form-inline">
+        <label for="idade"> Idade: </label>
+        <input id="idade" class="form-control ml-2" type="number" formControlName="idade">
+      </div>
+
+      <input class="form-control" type="text">
+      <input class="form-control" type="text">
+      <input class="form-control" type="text">
+      <input class="form-control" type="text">
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-danger" (click)="cancelar()">
+      <span>Cancelar <i class="fa fa-times"></i></span>
+    </button>
+    <button class="btn btn-primary" (click)="cadastar()">
+      <span>Cadastrar <i class="fa fa-save"></i></span>
+    </button>
+  </div>
+</div>

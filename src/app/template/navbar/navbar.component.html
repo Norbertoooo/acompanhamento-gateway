@@ -1,4 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between">
   <a class="navbar-brand" href="#">Acompanhamento - Web</a>
-  <button class="btn btn-success my-2 my-sm-0" type="submit" (click)="sobre()">Sobre o projeto</button>
+  <div *ngIf="usuarioLogado()">
+    <button class="btn btn-dark" type="submit" (click)="logout()">Sair</button>
+  </div>
+  <button class="btn btn-success" type="submit" (click)="sobre()">Sobre o projeto</button>
 </nav>

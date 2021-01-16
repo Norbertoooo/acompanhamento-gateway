@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {DadosService} from '../service/dados.service';
 import {AuthenticationService} from '../helpers/authentication.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -14,7 +13,6 @@ export class LoginComponent implements OnInit {
   formularioLogin: FormGroup;
 
   constructor(private router: Router,
-              private dadosService: DadosService,
               private authenticationService: AuthenticationService,
               private formBuilder: FormBuilder) {
   }
@@ -31,7 +29,8 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.formularioLogin.value).subscribe(
       (result) => {
         console.log(result);
-        this.router.navigateByUrl('/dashboard-terapeuta').then();
+        this.router.navigateByUrl('/dashboard-terapeuta', {state: {result}}).then();
+        localStorage.setItem('emailLogado', result.login.email);
       }, (error) => (console.log(error))
     );
   }

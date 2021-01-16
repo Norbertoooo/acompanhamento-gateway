@@ -4,7 +4,7 @@
     <div class="col-3" style="margin-top: 3%">
       <img class="img-fluid" src="assets/imagens/logo-tea.png" alt="logo-tea">
     </div>
-    <div class="col pt-5" style="text-align: center; margin-top: 8%;">
+    <div class="col pt-5 pt-5" style="text-align: center;">
 
       <div class="pb-4">
         <h1>Bem vindo a plataforma web da R.A.F.A</h1>
@@ -14,24 +14,58 @@
       <div class="form-group centralizar" >
         <form [formGroup]="formularioCadastro">
           <div class="row pb-3" >
-            <label for="email"></label>
-            <input id="email" type=email class="form-control tamanho" placeholder="Email" formControlName="email">
+            <label for="nomeCompleto"></label>
+            <input id="nomeCompleto" type=text class="form-control tamanho" placeholder="Nome Completo" formControlName="nomeCompleto">
           </div>
-          <div class="row">
-            <label for="senha"></label>
-            <input id="senha" autocomplete="current password" type=password class="form-control" placeholder="Senha"
-                   formControlName="senha">
+
+          <div class="row pb-3">
+            <label for="dataNascimento"></label>
+            <input id="dataNascimento" type=date class="form-control" placeholder="Data de Nascimento"
+                   formControlName="dataNascimento">
           </div>
-          <div class="row pt-3">
-            <div class="form-check form-check-inline pl-5 pr-5">
-              <input class="form-check-input" type="radio" id="responsavel" value="RESPONSAVEL" formControlName="perfil">
-              <label class="form-check-label" for="responsavel">Responsável</label>
+
+          <div class="row pb-3">
+            <label for="telefone"></label>
+            <input id="telefone" type=number class="form-control" placeholder="Telefone"
+                   formControlName="telefone">
+          </div>
+
+          <div class="row pb-3">
+            <label for="cpf"></label>
+            <input id="cpf" type=text class="form-control" placeholder="CPF"
+                   formControlName="cpf">
+          </div>
+
+          <div class="row pb-3">
+            <label for="crfa"></label>
+            <input id="crfa" type=number class="form-control" placeholder="CRFa"
+                   formControlName="crfa">
+          </div>
+
+          <div class="row pb-3">
+            <label for="formacao"></label>
+            <input id="formacao" type=text class="form-control" placeholder="Formação Acadêmica"
+                   formControlName="formacao">
+          </div>
+
+          <div class="row pb-3">
+            <label for="especialidade"></label>
+            <input id="especialidade" type=text class="form-control" placeholder="Especialidade"
+                   formControlName="especialidade">
+          </div>
+
+          <form formGroupName="login">
+            <div class="row pb-3" >
+              <label for="email"></label>
+              <input id="email" type=email class="form-control tamanho" placeholder="Email" formControlName="email">
             </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" id="terapeuta" value="TERAPEUTA" formControlName="perfil">
-              <label class="form-check-label" for="terapeuta">Terapeuta</label>
+            <div class="row">
+              <label for="senha"></label>
+              <input id="senha" autocomplete="current password" type=password class="form-control" placeholder="Senha"
+                     formControlName="senha">
             </div>
-          </div>
+          </form>
+
         </form>
       </div>
       <div class="centralizar-texto">
