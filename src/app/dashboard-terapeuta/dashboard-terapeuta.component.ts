@@ -21,7 +21,10 @@ export class DashboardTerapeutaComponent implements OnInit {
   paciente = new PacienteModel();
 
   usuarioLogado: string;
-  terapeuta: TerapeutaModel;
+  terapeuta: TerapeutaModel = new TerapeutaModel();
+  contador = 8;
+  page = 0;
+  total: number;
 
   constructor(private activatedRoute: ActivatedRoute, private terapeutaService: DashboardTerapeutaService,
               private modal: NgbModal, private router: Router) {
@@ -29,16 +32,23 @@ export class DashboardTerapeutaComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuarioLogado = localStorage.getItem('emailLogado');
-    this.terapeutaService.listarPacientes(this.usuarioLogado).subscribe((response) => this.pacientes = response);
-    this.buscarDadosTerapeuta();
+    this.obterPacientes();
+    this.obterDadosTerapeuta();
     console.log(this.usuarioLogado);
+  }
+
+  obterPacientes(): void {
+    this.terapeutaService.listarPacientes(this.usuarioLogado, this.page, this.contador).subscribe((response) => {
+      this.pacientes = response.content;
+      this.total = response.totalElements;
+    });
   }
 
   cadastrarPaciente(): void {
     this.terapeutaService.cadastrarPaciente(this.paciente, this.usuarioLogado).subscribe();
   }
 
-  buscarDadosTerapeuta(): void {
+  obterDadosTerapeuta(): void {
     this.terapeutaService.buscarDadosTerapeuta(this.usuarioLogado).subscribe((response) => this.terapeuta = response);
   }
 

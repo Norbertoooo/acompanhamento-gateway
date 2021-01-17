@@ -1,93 +1,98 @@
 <div class="container-fluid pt-2">
-  <div class="pb-2">
-    <h3> Dados do terapeuta</h3>
+  <div class="card p-2">
+    <div class="pb-2 ml-2">
+      <h3> Dados do terapeuta</h3>
+    </div>
+    <form class="pb-3">
+
+      <div class="row">
+        <div class="col-4">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Nome Completo</div>
+            </div>
+            <input id="terapeuta-nome-completo" class="form-control" readonly="readonly"
+                   [value]="terapeuta.nomeCompleto">
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Telefone</div>
+              <input size="20" class="form-control" readonly="readonly" [value]="terapeuta.telefone">
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Data de Nascimento</div>
+              <input size="23" class="form-control" readonly="readonly"
+                     [value]="terapeuta.dataNascimento | date: 'dd/MM/yyyy' ">
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">CPF</div>
+              <input size="21" class="form-control" readonly="readonly" [value]="terapeuta.cpf" mask="000.000.000.00">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row pt-3">
+
+        <div class="col-4">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Formação</div>
+              <input size="65" class="form-control" readonly="readonly" [value]="terapeuta.formacao">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Email</div>
+              <input size="23" class="form-control" readonly="readonly" [value]="terapeuta.loginEmail">
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Especialidade</div>
+              <input size="30" class="form-control" readonly="readonly" [value]="terapeuta.especialidade">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-2">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">CRFa</div>
+              <input class="form-control" readonly="readonly" [value]="terapeuta.crfa" mask="0-00000">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </form>
   </div>
-  <form class="pb-3">
 
-    <div class="row">
-      <div class="col-4">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text">Nome Completo</div>
-          </div>
-          <input id="terapeuta-nome-completo" class="form-control" readonly="readonly"
-                 [value]="terapeuta.nomeCompleto">
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text">Telefone</div>
-            <input size="20" class="form-control" readonly="readonly" [value]="terapeuta.telefone">
-          </div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text">Data de Nascimento</div>
-            <input size="23" class="form-control" readonly="readonly"
-                   [value]="terapeuta.dataNascimento | date: 'dd/MM/yyyy' ">
-          </div>
-        </div>
-      </div>
-      <div class="col-2">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text">CPF</div>
-            <input size="21" class="form-control" readonly="readonly" [value]="terapeuta.cpf">
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="row pt-3">
-
-      <div class="col-4">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text">Formação</div>
-            <input size="65" class="form-control" readonly="readonly" [value]="terapeuta.formacao">
-          </div>
-        </div>
-      </div>
-
-      <div class="col-3">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text">Email</div>
-            <input size="23" class="form-control" readonly="readonly" [value]="terapeuta.loginEmail">
-          </div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text">Especialidade</div>
-            <input size="30" class="form-control" readonly="readonly" [value]="terapeuta.especialidade">
-          </div>
-        </div>
-      </div>
-
-      <div class="col-2">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text">CRFa</div>
-            <input class="form-control" readonly="readonly" [value]="terapeuta.crfa">
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </form>
-
-  <div class="container-fluid">
+  <div class="container-fluid mt-3">
     <div>
-      <div class="row pb-3" style="text-align: center">
-        <div class="col-10"><h2>Lista de Pacientes</h2>
+      <div class="row pb-3">
+        <div class="col-10">
+          <h2>Lista de Pacientes</h2>
         </div>
         <div class="col">
-          <button type=submit class="btn btn-primary ml-3 mb-1" (click)="abrirCadastroPacienteModal()">Adicionar Paciente
+          <button type=submit class="btn btn-primary ml-3 mb-1" (click)="abrirCadastroPacienteModal()">Adicionar
+            Paciente
           </button>
         </div>
       </div>
@@ -104,7 +109,8 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let paciente of pacientes">
+          <tr
+            *ngFor="let paciente of pacientes | paginate: {itemsPerPage: contador, currentPage: page, totalItems: total }">
             <th scope="row"> {{paciente.id}} </th>
             <td><span (click)="abrirPacienteModal()">{{paciente.nomeCompleto}}</span></td>
             <td> {{paciente.idade}} </td>
@@ -117,7 +123,14 @@
           </tr>
           </tbody>
         </table>
+        <div class="text-center">
+          <pagination-controls
+            (pageChange)="page = $event" directionLinks="true" responsive="true" previousLabel="Anterior"
+            nextLabel="Próximo">
+          </pagination-controls>
+        </div>
       </div>
     </div>
   </div>
+</div>
 

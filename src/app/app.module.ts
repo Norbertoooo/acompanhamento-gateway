@@ -23,6 +23,8 @@ import {registerLocaleData} from '@angular/common';
 import localePtBr from '@angular/common/locales/pt';
 import {CadastrarPacienteModalComponent} from './dashboard-terapeuta/cadastrar-paciente-modal/cadastrar-paciente-modal.component';
 import {PacienteService} from './service/paciente.service';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {NgxMaskModule} from 'ngx-mask';
 
 registerLocaleData(localePtBr, 'pt-BR');
 
@@ -47,7 +49,9 @@ registerLocaleData(localePtBr, 'pt-BR');
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
