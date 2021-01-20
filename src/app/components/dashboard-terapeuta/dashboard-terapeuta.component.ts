@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {DashboardTerapeutaService} from './dashboard-terapeuta.service';
-import {PacienteModel} from '../model/paciente.model';
+import {PacienteModel} from '../../model/paciente.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {PacienteModalComponent} from './paciente-modal/paciente-modal.component';
 import {FichaModalComponent} from './ficha-modal/ficha-modal.component';
 import {ResponsavelModalComponent} from './responsavel-modal/responsavel-modal.component';
 import {ActivatedRoute, Router} from '@angular/router';
-import {TerapeutaModel} from '../model/terapeuta.model';
+import {TerapeutaModel} from '../../model/terapeuta.model';
 import {CadastrarPacienteModalComponent} from './cadastrar-paciente-modal/cadastrar-paciente-modal.component';
 
 @Component({
@@ -39,6 +39,7 @@ export class DashboardTerapeutaComponent implements OnInit {
 
   obterPacientes(): void {
     this.terapeutaService.listarPacientes(this.usuarioLogado, this.page, this.contador).subscribe((response) => {
+      console.log(response.content);
       this.pacientes = response.content;
       this.total = response.totalElements;
     });
@@ -53,7 +54,7 @@ export class DashboardTerapeutaComponent implements OnInit {
   }
 
   abrirResponsavelModal(): void {
-    this.modal.open(ResponsavelModalComponent);
+    const modalRef = this.modal.open(ResponsavelModalComponent).componentInstance;
   }
 
   abrirFichaModal(): void {
@@ -65,6 +66,22 @@ export class DashboardTerapeutaComponent implements OnInit {
   }
 
   abrirCadastroPacienteModal(): void {
-    this.modal.open(CadastrarPacienteModalComponent);
+    const modalRef = this.modal.open(CadastrarPacienteModalComponent).componentInstance;
+    modalRef.usuarioLogado = this.usuarioLogado;
+    modalRef.event.subscribe( (event) => {
+      if (event) {
+        this.obterPacientes();
+      }
+    }) ;
   }
+
+  formatarCpf(): string {
+    if (this.terapeuta.cpf !== null) {
+      const cpf = this.terapeuta.cpf.replace(/[^\d]/g, '');
+      return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+    } else {
+      return '';
+    }
+  }
+
 }

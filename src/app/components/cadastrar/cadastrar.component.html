@@ -4,7 +4,7 @@
     <div class="col-3" style="margin-top: 3%">
       <img class="img-fluid" src="assets/imagens/logo-tea.png" alt="logo-tea">
     </div>
-    <div class="col pt-5 pt-5" style="text-align: center;">
+    <div class="col pt-5 pt-5 text-center">
 
       <div class="pb-4">
         <h1>Bem vindo a plataforma web da R.A.F.A</h1>
@@ -15,7 +15,8 @@
         <form [formGroup]="formularioCadastro">
           <div class="row pb-3" >
             <label for="nomeCompleto"></label>
-            <input id="nomeCompleto" type=text class="form-control tamanho" placeholder="Nome Completo" formControlName="nomeCompleto">
+            <input id="nomeCompleto" type=text class="form-control tamanho" placeholder="Nome Completo"
+                   formControlName="nomeCompleto">
           </div>
 
           <div class="row pb-3">
@@ -26,20 +27,20 @@
 
           <div class="row pb-3">
             <label for="telefone"></label>
-            <input id="telefone" type=number class="form-control" placeholder="Telefone"
+            <input id="telefone" type=tel class="form-control" placeholder="Telefone"
                    formControlName="telefone">
           </div>
 
           <div class="row pb-3">
             <label for="cpf"></label>
             <input id="cpf" type=text class="form-control" placeholder="CPF"
-                   formControlName="cpf">
+                   formControlName="cpf" maxlength="14" mask="000.000.000-00">
           </div>
 
           <div class="row pb-3">
             <label for="crfa"></label>
             <input id="crfa" type=number class="form-control" placeholder="CRFa"
-                   formControlName="crfa">
+                   formControlName="crfa" >
           </div>
 
           <div class="row pb-3">

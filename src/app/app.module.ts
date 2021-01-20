@@ -1,30 +1,31 @@
-import {BrowserModule} from '@angular/platform-browser';
+import {registerLocaleData} from '@angular/common';
 import {LOCALE_ID, NgModule} from '@angular/core';
-
-import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {NavbarComponent} from './template/navbar/navbar.component';
 import {FooterComponent} from './template/footer/footer.component';
+import {CadastrarComponent} from './components/cadastrar/cadastrar.component';
+import {DashboardTerapeutaComponent} from './components/dashboard-terapeuta/dashboard-terapeuta.component';
+import {LoginComponent} from './components/login/login.component';
 import {PrincipalComponent} from './template/principal/principal.component';
-import {LoginComponent} from './login/login.component';
+import {NavbarComponent} from './template/navbar/navbar.component';
+import {SobreProjetoComponent} from './components/sobre-projeto/sobre-projeto.component';
+import {PacienteModalComponent} from './components/dashboard-terapeuta/paciente-modal/paciente-modal.component';
+import {AlertComponent} from './shared/alert/alert.component';
+import {ResponsavelModalComponent} from './components/dashboard-terapeuta/responsavel-modal/responsavel-modal.component';
+import {CadastrarPacienteModalComponent} from './components/dashboard-terapeuta/cadastrar-paciente-modal/cadastrar-paciente-modal.component';
+import {FichaModalComponent} from './components/dashboard-terapeuta/ficha-modal/ficha-modal.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {CadastrarComponent} from './cadastrar/cadastrar.component';
-import {JwtInterceptor} from './helpers';
-import {ErrorInterceptor} from './helpers';
-import { DashboardTerapeutaComponent } from './dashboard-terapeuta/dashboard-terapeuta.component';
-import {AuthenticationService} from './helpers/authentication.service';
-import { SobreProjetoComponent } from './sobre-projeto/sobre-projeto.component';
-import {PacienteModalComponent} from './dashboard-terapeuta/paciente-modal/paciente-modal.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {FichaModalComponent} from './dashboard-terapeuta/ficha-modal/ficha-modal.component';
-import {ResponsavelModalComponent} from './dashboard-terapeuta/responsavel-modal/responsavel-modal.component';
-import {registerLocaleData} from '@angular/common';
-import localePtBr from '@angular/common/locales/pt';
-import {CadastrarPacienteModalComponent} from './dashboard-terapeuta/cadastrar-paciente-modal/cadastrar-paciente-modal.component';
-import {PacienteService} from './service/paciente.service';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {NgxMaskModule} from 'ngx-mask';
+import {NgbActiveModal, NgbModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ErrorInterceptor, JwtInterceptor} from './helpers';
+import {AuthenticationService} from './helpers/authentication.service';
+import {PacienteService} from './service/paciente.service';
+import localePtBr from '@angular/common/locales/pt';
+import { DashboardResponsavelComponent } from './components/dashboard-responsavel/dashboard-responsavel.component';
+
 
 registerLocaleData(localePtBr, 'pt-BR');
 
@@ -41,7 +42,9 @@ registerLocaleData(localePtBr, 'pt-BR');
     PacienteModalComponent,
     FichaModalComponent,
     ResponsavelModalComponent,
-    CadastrarPacienteModalComponent
+    CadastrarPacienteModalComponent,
+    AlertComponent,
+    DashboardResponsavelComponent
   ],
   imports: [
     BrowserModule,
@@ -56,8 +59,8 @@ registerLocaleData(localePtBr, 'pt-BR');
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-    {provide: LOCALE_ID, useValue: 'pt-BR' },
-    AuthenticationService, PacienteService
+    {provide: LOCALE_ID, useValue: 'pt-BR'},
+    AuthenticationService, PacienteService, NgbActiveModal, NgbModal
   ],
   bootstrap: [AppComponent]
 })

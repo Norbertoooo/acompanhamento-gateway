@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-responsavel-modal',
@@ -7,10 +8,14 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ResponsavelModalComponent implements OnInit {
 
-  constructor() {
+  constructor(private activeModal: NgbActiveModal) {
   }
 
   ngOnInit(): void {
+  }
+
+  cancelar(): void {
+    this.activeModal.dismiss('close');
   }
 
 }

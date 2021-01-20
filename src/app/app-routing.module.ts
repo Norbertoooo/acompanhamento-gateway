@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {CadastrarComponent} from './cadastrar/cadastrar.component';
-import {LoginComponent} from './login/login.component';
-import {DashboardTerapeutaComponent} from './dashboard-terapeuta/dashboard-terapeuta.component';
+import {LoginComponent} from './components/login/login.component';
+import {DashboardTerapeutaComponent} from './components/dashboard-terapeuta/dashboard-terapeuta.component';
 import {AuthGuard} from './helpers';
-import {SobreProjetoComponent} from './sobre-projeto/sobre-projeto.component';
+import {SobreProjetoComponent} from './components/sobre-projeto/sobre-projeto.component';
+import {CadastrarComponent} from './components/cadastrar/cadastrar.component';
+import {DashboardResponsavelComponent} from './components/dashboard-responsavel/dashboard-responsavel.component';
 
 const routes: Routes = [
   {path: 'cadastrar', component: CadastrarComponent},
   {path: '', component: LoginComponent},
   {path: 'sobre', component: SobreProjetoComponent},
-  {path: 'dashboard-terapeuta', component: DashboardTerapeutaComponent, canActivate: [AuthGuard]}
+  {path: 'dashboard-terapeuta', component: DashboardTerapeutaComponent, canActivate: [AuthGuard]},
+  {path: 'dashboard-responsavel', component: DashboardResponsavelComponent, canActivate: [AuthGuard]}
+
 ];
 
 @NgModule({

@@ -15,31 +15,35 @@
                    [value]="terapeuta.nomeCompleto">
           </div>
         </div>
+
         <div class="col-3">
           <div class="input-group">
             <div class="input-group-prepend">
-              <div class="input-group-text">Telefone</div>
-              <input size="20" class="form-control" readonly="readonly" [value]="terapeuta.telefone">
+              <div class="input-group-text">Especialidade</div>
+              <input size="40" class="form-control" readonly="readonly" [value]="terapeuta.especialidade">
             </div>
           </div>
         </div>
+
         <div class="col-3">
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text">Data de Nascimento</div>
-              <input size="23" class="form-control" readonly="readonly"
+              <input  class="form-control" readonly="readonly"
                      [value]="terapeuta.dataNascimento | date: 'dd/MM/yyyy' ">
             </div>
           </div>
         </div>
+
         <div class="col-2">
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text">CPF</div>
-              <input size="21" class="form-control" readonly="readonly" [value]="terapeuta.cpf" mask="000.000.000.00">
+              <input size="21" maxlength="14" type="text" class="form-control" readonly="readonly" [value]="formatarCpf()">
             </div>
           </div>
         </div>
+
       </div>
 
       <div class="row pt-3">
@@ -57,15 +61,16 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text">Email</div>
-              <input size="23" class="form-control" readonly="readonly" [value]="terapeuta.loginEmail">
+              <input size="50" class="form-control" readonly="readonly" [value]="terapeuta.loginEmail">
             </div>
           </div>
         </div>
+
         <div class="col-3">
           <div class="input-group">
             <div class="input-group-prepend">
-              <div class="input-group-text">Especialidade</div>
-              <input size="30" class="form-control" readonly="readonly" [value]="terapeuta.especialidade">
+              <div class="input-group-text">Telefone</div>
+              <input size="32" class="form-control" readonly="readonly" [value]="terapeuta.telefone">
             </div>
           </div>
         </div>
@@ -74,7 +79,7 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text">CRFa</div>
-              <input class="form-control" readonly="readonly" [value]="terapeuta.crfa" mask="0-00000">
+              <input class="form-control" readonly="readonly" [value]="terapeuta.crfa">
             </div>
           </div>
         </div>
@@ -112,12 +117,12 @@
           <tr
             *ngFor="let paciente of pacientes | paginate: {itemsPerPage: contador, currentPage: page, totalItems: total }">
             <th scope="row"> {{paciente.id}} </th>
-            <td><span (click)="abrirPacienteModal()">{{paciente.nomeCompleto}}</span></td>
+            <td><span>{{paciente.nomeCompleto}}</span></td>
             <td> {{paciente.idade}} </td>
             <td><a (click)="abrirResponsavelModal()">Responsável</a></td>
             <td><i (click)="abrirFichaModal()" class="fa fa-edit"></i></td>
             <td>
-              <i class="fa fa-google"></i>
+              <i class="fa fa-google pr-5"></i>
               <i class="fa fa-file-pdf-o"></i>
             </td>
           </tr>

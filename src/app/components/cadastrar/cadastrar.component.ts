@@ -1,9 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {LoginService} from '../service/login.service';
 import {Router} from '@angular/router';
-import {DatePipe, formatDate} from '@angular/common';
-import {LoginModel} from '../model/login.model';
+import {formatDate} from '@angular/common';
+import {LoginModel} from '../../model/login.model';
+import {LoginService} from '../../service/login.service';
+import {AlertModalService} from '../../service/alert-modal.service';
 
 @Component({
   selector: 'app-cadastrar',
@@ -12,13 +13,12 @@ import {LoginModel} from '../model/login.model';
 })
 export class CadastrarComponent implements OnInit {
 
-  formularioCadastro: FormGroup;
   @Input()
   Login: LoginModel;
+  formularioCadastro: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,
-              private loginService: LoginService,
-              private router: Router) {
+  constructor(private formBuilder: FormBuilder, private loginService: LoginService,
+              private router: Router, private alertService: AlertModalService) {
   }
 
   ngOnInit(): void {
@@ -43,6 +43,20 @@ export class CadastrarComponent implements OnInit {
   cadastrar(): void {
     console.log(this.formularioCadastro.value);
     this.formularioCadastro.controls.dataNascimento.setValue(formatDate(this.formularioCadastro.get('dataNascimento').value, 'dd/MM/yyyy', 'pt-BR'));
-    this.loginService.cadastrar(this.formularioCadastro.value).subscribe(() => this.router.navigateByUrl('').then());
+    this.loginService.cadastrar(this.formularioCadastro.value).subscribe(() => {
+      this.showSucess('Terapeuta cadastrado com sucesso!');
+      this.router.navigateByUrl('').then();
+    }, error => {
+      this.showError(error);
+    });
   }
+
+  private showSucess(mensagem: string): void {
+    this.alertService.exibirSucesso(mensagem);
+  }
+
+  private showError(mensagem: any): void {
+    this.alertService.exibirErro(mensagem);
+  }
+
 }
