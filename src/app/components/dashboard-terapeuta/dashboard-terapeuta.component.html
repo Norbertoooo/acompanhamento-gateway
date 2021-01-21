@@ -1,11 +1,17 @@
 <div class="container-fluid pt-4">
   <app-dados-terapeuta [terapeuta]="terapeuta"></app-dados-terapeuta>
   <div class="card mt-4">
-    <div class="card-header form-inline">
-        <h3>Lista de Pacientes</h3>
-        <button type=submit class="btn btn-primary" (click)="abrirCadastroPacienteModal()">Adicionar
-          Paciente
-        </button>
+    <div class="card-header">
+      <div class="row">
+        <div class="col">
+          <h3>Lista de Pacientes</h3>
+        </div>
+        <div class="col" style="text-align: right">
+          <button type=submit class="btn btn-primary" (click)="abrirCadastroPacienteModal()">Adicionar
+            Paciente
+          </button>
+        </div>
+      </div>
     </div>
     <div class="card-body">
       <div class="table-responsive">
