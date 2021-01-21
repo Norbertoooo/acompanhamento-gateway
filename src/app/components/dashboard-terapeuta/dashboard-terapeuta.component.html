@@ -1,106 +1,13 @@
-<div class="container-fluid pt-2">
-  <div class="card p-2">
-    <div class="pb-2 ml-2">
-      <h3> Dados do terapeuta</h3>
+<div class="container-fluid pt-4">
+  <app-dados-terapeuta [terapeuta]="terapeuta"></app-dados-terapeuta>
+  <div class="card mt-4">
+    <div class="card-header form-inline">
+        <h3>Lista de Pacientes</h3>
+        <button type=submit class="btn btn-primary" (click)="abrirCadastroPacienteModal()">Adicionar
+          Paciente
+        </button>
     </div>
-    <form class="pb-3">
-
-      <div class="row">
-        <div class="col-4">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">Nome Completo</div>
-            </div>
-            <input id="terapeuta-nome-completo" class="form-control" readonly="readonly"
-                   [value]="terapeuta.nomeCompleto">
-          </div>
-        </div>
-
-        <div class="col-3">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">Especialidade</div>
-              <input size="40" class="form-control" readonly="readonly" [value]="terapeuta.especialidade">
-            </div>
-          </div>
-        </div>
-
-        <div class="col-3">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">Data de Nascimento</div>
-              <input  class="form-control" readonly="readonly"
-                     [value]="terapeuta.dataNascimento | date: 'dd/MM/yyyy' ">
-            </div>
-          </div>
-        </div>
-
-        <div class="col-2">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">CPF</div>
-              <input size="21" maxlength="14" type="text" class="form-control" readonly="readonly" [value]="formatarCpf()">
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="row pt-3">
-
-        <div class="col-4">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">Formação</div>
-              <input size="65" class="form-control" readonly="readonly" [value]="terapeuta.formacao">
-            </div>
-          </div>
-        </div>
-
-        <div class="col-3">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">Email</div>
-              <input size="50" class="form-control" readonly="readonly" [value]="terapeuta.loginEmail">
-            </div>
-          </div>
-        </div>
-
-        <div class="col-3">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">Telefone</div>
-              <input size="32" class="form-control" readonly="readonly" [value]="terapeuta.telefone">
-            </div>
-          </div>
-        </div>
-
-        <div class="col-2">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">CRFa</div>
-              <input class="form-control" readonly="readonly" [value]="terapeuta.crfa">
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </form>
-  </div>
-
-
-  <div class="container-fluid mt-3">
-    <div>
-      <div class="row pb-3">
-        <div class="col-10">
-          <h2>Lista de Pacientes</h2>
-        </div>
-        <div class="col">
-          <button type=submit class="btn btn-primary ml-3 mb-1" (click)="abrirCadastroPacienteModal()">Adicionar
-            Paciente
-          </button>
-        </div>
-      </div>
+    <div class="card-body">
       <div class="table-responsive">
         <table class="table">
           <thead>
@@ -114,8 +21,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr
-            *ngFor="let paciente of pacientes | paginate: {itemsPerPage: contador, currentPage: page, totalItems: total }">
+          <tr *ngFor="let paciente of pacientes | paginate: {itemsPerPage: contador, currentPage: page + 1, totalItems: total }">
             <th scope="row"> {{paciente.id}} </th>
             <td><span>{{paciente.nomeCompleto}}</span></td>
             <td> {{paciente.idade}} </td>
@@ -130,7 +36,7 @@
         </table>
         <div class="text-center">
           <pagination-controls
-            (pageChange)="page = $event" directionLinks="true" responsive="true" previousLabel="Anterior"
+            (pageChange)="mudarPagina($event)" directionLinks="true" responsive="true" previousLabel="Anterior"
             nextLabel="Próximo">
           </pagination-controls>
         </div>
@@ -138,4 +44,3 @@
     </div>
   </div>
 </div>
-

@@ -68,20 +68,15 @@ export class DashboardTerapeutaComponent implements OnInit {
   abrirCadastroPacienteModal(): void {
     const modalRef = this.modal.open(CadastrarPacienteModalComponent).componentInstance;
     modalRef.usuarioLogado = this.usuarioLogado;
-    modalRef.event.subscribe( (event) => {
+    modalRef.event.subscribe((event) => {
       if (event) {
         this.obterPacientes();
       }
-    }) ;
+    });
   }
 
-  formatarCpf(): string {
-    if (this.terapeuta.cpf !== null) {
-      const cpf = this.terapeuta.cpf.replace(/[^\d]/g, '');
-      return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-    } else {
-      return '';
-    }
+  mudarPagina($event: number): void {
+    this.page = $event - 1;
+    this.obterPacientes();
   }
-
 }

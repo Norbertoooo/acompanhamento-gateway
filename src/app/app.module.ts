@@ -25,6 +25,7 @@ import {AuthenticationService} from './helpers/authentication.service';
 import {PacienteService} from './service/paciente.service';
 import localePtBr from '@angular/common/locales/pt';
 import { DashboardResponsavelComponent } from './components/dashboard-responsavel/dashboard-responsavel.component';
+import { DadosTerapeutaComponent } from './components/dados-terapeuta/dados-terapeuta.component';
 
 
 registerLocaleData(localePtBr, 'pt-BR');
@@ -44,7 +45,8 @@ registerLocaleData(localePtBr, 'pt-BR');
     ResponsavelModalComponent,
     CadastrarPacienteModalComponent,
     AlertComponent,
-    DashboardResponsavelComponent
+    DashboardResponsavelComponent,
+    DadosTerapeutaComponent
   ],
   imports: [
     BrowserModule,

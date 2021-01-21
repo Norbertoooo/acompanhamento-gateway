@@ -1,73 +1,75 @@
-<div class="container-fluid pt-2">
-  <div class="card p-2">
-    <div class="pb-2 ml-2">
-      <h3> Dados do Responsável</h3>
+<div class="container-fluid pt-4">
+  <div class="card">
+    <div class="card-header">
+        <h3>Dados do Responsável</h3>
     </div>
-    <form class="pb-3">
+    <div class="card-body">
+      <form class="">
 
-      <div class="row">
-        <div class="col-4">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">Nome Completo</div>
-            </div>
-            <input id="terapeuta-nome-completo" class="form-control" readonly="readonly"
-                   [value]="responsavel.nomeCompleto">
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">Parentesco</div>
-              <input size="40" class="form-control" readonly="readonly" [value]="responsavel.parentesco">
+        <div class="row">
+          <div class="col-4">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Nome Completo</div>
+              </div>
+              <input id="terapeuta-nome-completo" class="form-control" readonly="readonly"
+                     [value]="responsavel.nomeCompleto">
             </div>
           </div>
-        </div>
 
-        <div class="col-3">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">Data de Nascimento</div>
-              <input class="form-control" readonly="readonly"
-                     [value]="responsavel.dataNascimento | date: 'dd/MM/yyyy' ">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Parentesco</div>
+                <input size="40" class="form-control" readonly="readonly" [value]="responsavel.parentesco">
+              </div>
             </div>
           </div>
-        </div>
 
-      </div>
-
-      <div class="row pt-3">
-
-        <div class="col-4">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">CPF</div>
-              <input size="21" maxlength="14" type="text" class="form-control" readonly="readonly"
-                     [value]="responsavel.cpf">
+          <div class="col-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Data de Nascimento</div>
+                <input class="form-control" readonly="readonly"
+                       [value]="responsavel.dataNascimento | date: 'dd/MM/yyyy' ">
+              </div>
             </div>
           </div>
+
         </div>
 
-        <div class="col">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">Email</div>
-              <input size="50" class="form-control" readonly="readonly" [value]="responsavel.loginEmail">
+        <div class="row pt-3">
+
+          <div class="col-4">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">CPF</div>
+                <input size="21" maxlength="14" type="text" class="form-control" readonly="readonly"
+                       [value]="responsavel.cpf">
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-3">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">Telefone</div>
-              <input size="32" class="form-control" readonly="readonly" [value]="responsavel.telefone">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Email</div>
+                <input size="50" class="form-control" readonly="readonly" [value]="responsavel.loginEmail">
+              </div>
             </div>
           </div>
-        </div>
 
-      </div>
-    </form>
+          <div class="col-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Telefone</div>
+                <input size="32" class="form-control" readonly="readonly" [value]="responsavel.telefone">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </div>
   </div>
 </div>
