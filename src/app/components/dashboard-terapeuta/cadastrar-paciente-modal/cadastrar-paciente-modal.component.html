@@ -4,22 +4,29 @@
   </div>
   <div class="modal-body">
     <form [formGroup]="formularioCadastroPaciente">
-
-      <label for="paciente-nome-completo">
-        <span>Nome Completo:</span>
-        <input size="50" id="paciente-nome-completo" class="form-control" type="text" formControlName="nomeCompleto">
-      </label>
-
-      <label class="pr-3" for="paciente-data-nascimento">
-        <span>Data de Nascimento:</span>
-        <input id="paciente-data-nascimento" class="form-control" type="text" formControlName="idade">
-      </label>
-
-      <label for="paciente-cpf">
-        <span>CPF:</span>
-        <input id="paciente-cpf" maxlength="14" class="form-control" min="0" type="text" mask="000.000.000-00">
-      </label>
-
+      <div class="row">
+        <div class="col">
+          <label for="paciente-nome-completo">
+            <span>Nome Completo:</span>
+            <input size="50" id="paciente-nome-completo" class="form-control" type="text"
+                   formControlName="nomeCompleto">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="paciente-data-nascimento">
+            <span>Data de Nascimento:</span>
+            <input id="paciente-data-nascimento" class="form-control" type="text" formControlName="idade">
+          </label>
+        </div>
+        <div class="col">
+          <label for="paciente-cpf">
+            <span>CPF:</span>
+            <input id="paciente-cpf" maxlength="14" class="form-control" min="0" type="text" mask="000.000.000-00">
+          </label>
+        </div>
+      </div>
     </form>
   </div>
   <hr>
@@ -28,36 +35,56 @@
   </div>
   <div class="modal-body">
     <div [formGroup]="formularioCadastroPaciente">
-      <form formArrayName="responsaveis" *ngFor="let responsavel of formularioCadastroPaciente.get('responsaveis')['controls'] let i = index; ">
+      <form formArrayName="responsaveis"
+            *ngFor="let responsavel of formularioCadastroPaciente.get('responsaveis')['controls'] let i = index; ">
         <div [formGroupName]="i">
-          <label class="pr-3" for="responsavel-nome-completo">
-            <span> Nome completo</span>
-            <input id="responsavel-nome-completo" class="form-control" type="text" formControlName="nomeCompleto">
-          </label>
-          <label for="responsavel-data-nascimento">
-            <span>Data de Nascimento</span>
-            <input id="responsavel-data-nascimento" class="form-control" type="date" pattern="dd/MM/yyyy">
-          </label>
-          <label class="pr-3" for="responsavel-telefone">
-            <span>Telefone</span>
-            <input id="responsavel-telefone" class="form-control" type="tel" formControlName="telefone">
-          </label>
-          <label for="responsavel-cpf">
-            <span>CPF</span>
-            <input id="responsavel-cpf" maxlength="14"  class="form-control" type="text" mask="000.000.000-00" formControlName="cpf">
-          </label>
-          <label class="pr-3" for="responsavel-parentesco">
-            <span>Parentesco</span>
-            <input id="responsavel-parentesco" class="form-control" type="text" formControlName="parentesco">
-          </label>
+
+          <div class="row">
+            <div class="col">
+              <label for="responsavel-nome-completo">
+                <span> Nome completo:</span>
+                <input size="50" id="responsavel-nome-completo" class="form-control" type="text" formControlName="nomeCompleto">
+              </label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label for="responsavel-data-nascimento">
+                <span>Data de Nascimento</span>
+                <input id="responsavel-data-nascimento" class="form-control" type="date" pattern="dd/MM/yyyy">
+              </label>
+            </div>
+            <div class="col">
+              <label for="responsavel-telefone">
+                <span>Telefone:</span>
+                <input id="responsavel-telefone" class="form-control" type="tel" formControlName="telefone">
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="responsavel-cpf">
+                <span>CPF:</span>
+                <input id="responsavel-cpf" maxlength="14" class="form-control" type="text" mask="000.000.000-00"
+                       formControlName="cpf">
+              </label>
+            </div>
+            <div class="col">
+              <label for="responsavel-parentesco">
+                <span>Parentesco:</span>
+                <input id="responsavel-parentesco" class="form-control" type="text" formControlName="parentesco">
+              </label>
+            </div>
+          </div>
+
           <label for="responsavel-email">
-            <span>Email</span>
+            <span>Email:</span>
             <input id="responsavel-email" class="form-control" type="email" formControlName="email">
           </label>
         </div>
       </form>
     </div>
-
   </div>
 
   <div class="modal-footer">
