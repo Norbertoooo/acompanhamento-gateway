@@ -7,7 +7,10 @@
           <h3>Lista de Pacientes</h3>
         </div>
         <div class="col" style="text-align: right">
-          <button type=submit class="btn btn-primary" (click)="abrirCadastroPacienteModal()">Adicionar
+          <button type=submit class="btn btn-primary mr-3" (click)="abrirCadastroPacienteModal()">Adicionar
+            Paciente
+          </button>
+          <button type=submit class="btn btn-danger" [disabled]="!ahPacientesSelecionados" (click)="abrirCadastroPacienteModal()">Excluir
             Paciente
           </button>
         </div>

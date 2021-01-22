@@ -25,6 +25,7 @@ export class DashboardTerapeutaComponent implements OnInit {
   contador = 8;
   page = 0;
   total: number;
+  ahPacientesSelecionados = false;
 
   constructor(private activatedRoute: ActivatedRoute, private terapeutaService: DashboardTerapeutaService,
               private modal: NgbModal, private router: Router) {
