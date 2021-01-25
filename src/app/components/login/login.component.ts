@@ -30,6 +30,9 @@ export class LoginComponent implements OnInit {
       (result) => {
         console.log(result);
         this.router.navigateByUrl('/dashboard-terapeuta', {state: {result}}).then();
+        if (result.perfil === '') {
+          this.router.navigateByUrl('/dashboard-responsavel', {state: {result}}).then();
+        }
         localStorage.setItem('emailLogado', result.login.email);
       }, (error) => (console.log(error))
     );

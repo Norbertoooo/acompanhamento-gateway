@@ -2,18 +2,21 @@
   <div class="modal-header">
     <h3>Responsável</h3>
   </div>
+
   <div class="modal-body">
     <div class="row">
       <div class="col">
         <label class="pr-3" for="responsavel-nome-completo">
           <span> Nome completo:</span>
-          <input id="responsavel-nome-completo" class="form-control" type="text">
+          <input id="responsavel-nome-completo" class="form-control" type="text"
+                 value="{{responsaveis[0].nomeCompleto}}">
         </label>
       </div>
       <div class="col">
         <label for="responsavel-data-nascimento">
           <span>Data de Nascimento:</span>
-          <input id="responsavel-data-nascimento" class="form-control" type="date" pattern="dd/MM/yyyy">
+          <input id="responsavel-data-nascimento" class="form-control" type="date" pattern="dd/MM/yyyy"
+                 value="{{responsaveis[0].dataNascimento}}">
         </label>
       </div>
     </div>
@@ -21,13 +24,14 @@
       <div class="col">
         <label class="pr-3" for="responsavel-telefone">
           <span>Telefone:</span>
-          <input id="responsavel-telefone" class="form-control" type="tel">
+          <input id="responsavel-telefone" class="form-control" type="tel" value="{{responsaveis[0].telefone }}">
         </label>
       </div>
       <div class="col">
         <label for="responsavel-cpf">
           <span>CPF:</span>
-          <input id="responsavel-cpf" maxlength="14"  class="form-control" type="text" mask="000.000.000-00">
+          <input id="responsavel-cpf" maxlength="14" class="form-control" type="text" mask="000.000.000-00"
+                 value="{{responsaveis[0].cpf}}">
         </label>
       </div>
     </div>
@@ -35,13 +39,13 @@
       <div class="col">
         <label class="pr-3" for="responsavel-parentesco">
           <span>Parentesco:</span>
-          <input id="responsavel-parentesco" class="form-control" type="text">
+          <input id="responsavel-parentesco" class="form-control" type="text" value="{{responsaveis[0].parentesco}}">
         </label>
       </div>
       <div class="col">
         <label for="responsavel-email">
           <span>Email:</span>
-          <input id="responsavel-email" class="form-control" type="email">
+          <input id="responsavel-email" class="form-control" type="email" value="{{responsaveis[0].loginEmail}}">
         </label>
       </div>
     </div>
@@ -87,7 +91,7 @@
       <div class="col">
         <label for="detalhes">
           <span>Detalhes:</span>
-          <textarea cols="60" rows="3" id="detalhes" class="form-control" ></textarea>
+          <textarea cols="60" rows="3" id="detalhes" class="form-control"></textarea>
         </label>
       </div>
     </div>

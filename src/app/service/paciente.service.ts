@@ -13,7 +13,11 @@ export class PacienteService {
   constructor(private http: HttpClient) {
   }
 
-  cadastrarPaciente(paciente: any, usuarioLogado: string): Observable<any> {
-    return this.http.post(this.pacienteUrl.concat(usuarioLogado), paciente).pipe();
+  cadastrarPaciente(paciente: any): Observable<any> {
+    return this.http.post(this.pacienteUrl, paciente).pipe();
+  }
+
+  excluirPaciente(): Observable<any> {
+    return this.http.delete(this.pacienteUrl);
   }
 }

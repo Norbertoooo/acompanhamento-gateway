@@ -39,7 +39,7 @@ export class CadastrarPacienteModalComponent implements OnInit {
 
   cadastar(): void {
     console.log(this.formularioCadastroPaciente.value);
-    this.pacienteService.cadastrarPaciente(this.formularioCadastroPaciente.value, this.usuarioLogado)
+    this.pacienteService.cadastrarPaciente(this.formularioCadastroPaciente.value)
       .subscribe(() => {
         this.alertService.exibirSucesso('Paciente cadastrado com sucesso!');
         this.event.emit('true');

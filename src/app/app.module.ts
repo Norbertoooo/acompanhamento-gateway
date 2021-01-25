@@ -18,7 +18,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
-import {NgxMaskModule} from 'ngx-mask';
+import {IConfig, NgxMaskModule} from 'ngx-mask';
 import {NgbActiveModal, NgbModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ErrorInterceptor, JwtInterceptor} from './helpers';
 import {AuthenticationService} from './helpers/authentication.service';
@@ -27,8 +27,9 @@ import localePtBr from '@angular/common/locales/pt';
 import { DashboardResponsavelComponent } from './components/dashboard-responsavel/dashboard-responsavel.component';
 import { DadosTerapeutaComponent } from './components/dados-terapeuta/dados-terapeuta.component';
 
-
 registerLocaleData(localePtBr, 'pt-BR');
+
+export const maskConfig: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ registerLocaleData(localePtBr, 'pt-BR');
     HttpClientModule,
     NgbModule,
     NgxPaginationModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(maskConfig)
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

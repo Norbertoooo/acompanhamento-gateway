@@ -27,20 +27,20 @@
 
           <div class="row pb-3">
             <label for="telefone"></label>
-            <input id="telefone" type=tel class="form-control" placeholder="Telefone"
-                   formControlName="telefone">
+            <input id="telefone" type=text class="form-control" placeholder="Telefone"
+                   formControlName="telefone" mask="(00) 0 0000-0000">
           </div>
 
           <div class="row pb-3">
             <label for="cpf"></label>
             <input id="cpf" type=text class="form-control" placeholder="CPF"
-                   formControlName="cpf" maxlength="14" mask="000.000.000-00">
+                   formControlName="cpf" maxlength="14" mask="CPF_CNPJ">
           </div>
 
           <div class="row pb-3">
             <label for="crfa"></label>
-            <input id="crfa" type=number class="form-control" placeholder="CRFa"
-                   formControlName="crfa" >
+            <input id="crfa" type=text class="form-control" placeholder="CRFa"
+                   formControlName="crfa" mask="0-00000" >
           </div>
 
           <div class="row pb-3">

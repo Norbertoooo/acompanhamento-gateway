@@ -8,6 +8,10 @@ import {ResponsavelModalComponent} from './responsavel-modal/responsavel-modal.c
 import {ActivatedRoute, Router} from '@angular/router';
 import {TerapeutaModel} from '../../model/terapeuta.model';
 import {CadastrarPacienteModalComponent} from './cadastrar-paciente-modal/cadastrar-paciente-modal.component';
+import {PacienteService} from '../../service/paciente.service';
+import {Observable} from 'rxjs';
+import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+import {ResponsavelModel} from '../../model/responsavel.model';
 
 @Component({
   selector: 'app-dashboard-terapeuta',
@@ -16,30 +20,37 @@ import {CadastrarPacienteModalComponent} from './cadastrar-paciente-modal/cadast
 })
 export class DashboardTerapeutaComponent implements OnInit {
 
-  pacientes: PacienteModel[];
-
+  pacientes: PacienteModel[] = [];
   paciente = new PacienteModel();
-
   usuarioLogado: string;
   terapeuta: TerapeutaModel = new TerapeutaModel();
-  contador = 8;
+  contador = 5;
   page = 0;
   total: number;
   ahPacientesSelecionados = false;
+  pesquisaPaciente: PacienteModel;
+  formater = (x: {nomeCompleto: string}) => x.nomeCompleto;
 
   constructor(private activatedRoute: ActivatedRoute, private terapeutaService: DashboardTerapeutaService,
-              private modal: NgbModal, private router: Router) {
+              private modal: NgbModal, private router: Router, private pacienteService: PacienteService) {
   }
 
   ngOnInit(): void {
     this.usuarioLogado = localStorage.getItem('emailLogado');
     this.obterPacientes();
     this.obterDadosTerapeuta();
-    console.log(this.usuarioLogado);
+  }
+
+  search = (text$: Observable<string>) => {
+    return text$.pipe(
+      debounceTime(200),
+      map(term => term === '' ? []
+        : this.pacientes.filter(v => v.nomeCompleto.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+    );
   }
 
   obterPacientes(): void {
-    this.terapeutaService.listarPacientes(this.usuarioLogado, this.page, this.contador).subscribe((response) => {
+    this.terapeutaService.listarPacientes(this.page, this.contador).subscribe((response) => {
       console.log(response.content);
       this.pacientes = response.content;
       this.total = response.totalElements;
@@ -51,11 +62,12 @@ export class DashboardTerapeutaComponent implements OnInit {
   }
 
   obterDadosTerapeuta(): void {
-    this.terapeutaService.buscarDadosTerapeuta(this.usuarioLogado).subscribe((response) => this.terapeuta = response);
+    this.terapeutaService.buscarDadosTerapeuta().subscribe((response) => this.terapeuta = response);
   }
 
-  abrirResponsavelModal(): void {
+  abrirResponsavelModal(responsaveis: ResponsavelModel[]): void {
     const modalRef = this.modal.open(ResponsavelModalComponent).componentInstance;
+    modalRef.responsaveis = responsaveis;
   }
 
   abrirFichaModal(): void {
@@ -80,4 +92,11 @@ export class DashboardTerapeutaComponent implements OnInit {
     this.page = $event - 1;
     this.obterPacientes();
   }
+
+  excluirPacientes(): void {
+    this.pacienteService.excluirPaciente().subscribe((response) => {
+      console.log(response.content);
+    });
+  }
+
 }

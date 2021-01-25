@@ -39,7 +39,7 @@
             <div class="input-group-prepend">
               <div class="input-group-text">CPF</div>
               <input size="21" maxlength="14" type="text" class="form-control" readonly="readonly"
-                     [value]="formatarCpf()">
+                     value="{{terapeuta.cpf | mask: '000.000.000-00'}}">
             </div>
           </div>
         </div>
@@ -70,7 +70,8 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text">Telefone</div>
-              <input size="32" class="form-control" readonly="readonly" [value]="terapeuta.telefone">
+              <input type="text" size="32" class="form-control" readonly="readonly"
+                     value="{{terapeuta.telefone | mask: '(00) 0000-0000'}}">
             </div>
           </div>
         </div>
@@ -79,7 +80,8 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text">CRFa</div>
-              <input class="form-control" readonly="readonly" [value]="terapeuta.crfa">
+              <input type="text" mask="0-00000" class="form-control" readonly="readonly"
+                     value="{{terapeuta.crfa | mask: '0-00000'}}">
             </div>
           </div>
         </div>

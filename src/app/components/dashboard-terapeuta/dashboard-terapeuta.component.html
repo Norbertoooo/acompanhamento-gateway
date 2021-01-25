@@ -1,21 +1,59 @@
 <div class="container-fluid pt-4">
+
   <app-dados-terapeuta [terapeuta]="terapeuta"></app-dados-terapeuta>
+
   <div class="card mt-4">
     <div class="card-header">
       <div class="row">
         <div class="col">
           <h3>Lista de Pacientes</h3>
         </div>
-        <div class="col" style="text-align: right">
+        <div class="col text-right">
           <button type=submit class="btn btn-primary mr-3" (click)="abrirCadastroPacienteModal()">Adicionar
             Paciente
           </button>
-          <button type=submit class="btn btn-danger" [disabled]="!ahPacientesSelecionados" (click)="abrirCadastroPacienteModal()">Excluir
+          <button type=submit class="btn btn-danger" [disabled]="ahPacientesSelecionados" (click)="excluirPacientes()">
+            Excluir
             Paciente
           </button>
         </div>
       </div>
     </div>
+
+    <div class="card-body">
+      <ng-template #rt let-r="result" let-t="term">
+        <ngb-highlight [result]="r.nomeCompleto" [term]="t"></ngb-highlight>
+      </ng-template>
+      <label for="typeahead-basic">Nome do paciente:</label>
+      <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="pesquisaPaciente"
+             [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formater"/>
+      <table class="table" *ngIf="pesquisaPaciente">
+        <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Idade</th>
+          <th scope="col">Responsável</th>
+          <th scope="col">Ficha</th>
+          <th scope="col">Exportar Ficha</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row"> {{pesquisaPaciente.id}} </th>
+          <td><span>{{pesquisaPaciente.nomeCompleto}}</span></td>
+          <td> {{pesquisaPaciente.idade}} </td>
+          <td><a (click)="abrirResponsavelModal(pesquisaPaciente.responsaveis)">Responsável</a></td>
+          <td><i (click)="abrirFichaModal()" class="fa fa-edit"></i></td>
+          <td>
+            <i class="fa fa-google pr-5"></i>
+            <i class="fa fa-file-pdf-o"></i>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="card-body">
       <div class="table-responsive">
         <table class="table">
@@ -30,17 +68,20 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let paciente of pacientes | paginate: {itemsPerPage: contador, currentPage: page + 1, totalItems: total }">
-            <th scope="row"> {{paciente.id}} </th>
-            <td><span>{{paciente.nomeCompleto}}</span></td>
-            <td> {{paciente.idade}} </td>
-            <td><a (click)="abrirResponsavelModal()">Responsável</a></td>
-            <td><i (click)="abrirFichaModal()" class="fa fa-edit"></i></td>
-            <td>
-              <i class="fa fa-google pr-5"></i>
-              <i class="fa fa-file-pdf-o"></i>
-            </td>
-          </tr>
+            <tr
+              *ngFor="let paciente of pacientes | paginate: {itemsPerPage: contador, currentPage: page + 1, totalItems: total }">
+              <th scope="row"> {{paciente.id}} </th>
+              <td><span>{{paciente.nomeCompleto}}</span></td>
+              <td> {{paciente.idade}} </td>
+              <td>
+                <a (click)="abrirResponsavelModal(paciente.responsaveis)">Responsável</a>
+              </td>
+              <td><i (click)="abrirFichaModal()" class="fa fa-edit"></i></td>
+              <td>
+                <i class="fa fa-google pr-5"></i>
+                <i class="fa fa-file-pdf-o"></i>
+              </td>
+            </tr>
           </tbody>
         </table>
         <div class="text-center">
