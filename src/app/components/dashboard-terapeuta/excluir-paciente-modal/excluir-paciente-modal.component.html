@@ -1,0 +1,29 @@
+<div class="modal-open">
+  <div class="modal-header">
+    <h3>Tem certeza que deseja excluir os seguintes pacientes? </h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th class="text-center" scope="col">Id</th>
+        <th class="text-center" scope="col">Nome Completo</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let paciente of pacientesSelecionados">
+        <td class="text-center"><span>{{paciente.id}}</span></td>
+        <td class="text-center"><span>{{paciente.nomeCompleto}}</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-danger" (click)="cancelar()">
+      <span>Cancelar <i class="fa fa-times"></i></span>
+    </button>
+    <button class="btn btn-primary" (click)="excluirPacientes()">
+      <span>Confirmar <i class="fa fa-check"></i></span>
+    </button>
+  </div>
+</div>

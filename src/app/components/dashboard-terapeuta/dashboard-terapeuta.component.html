@@ -12,9 +12,8 @@
           <button type=submit class="btn btn-primary mr-3" (click)="abrirCadastroPacienteModal()">Adicionar
             Paciente
           </button>
-          <button type=submit class="btn btn-danger" [disabled]="ahPacientesSelecionados" (click)="excluirPacientes()">
-            Excluir
-            Paciente
+          <button type=submit class="btn btn-danger" [disabled]="pacientesSelecionados == null" (click)="abrirExcluirPacienteModal()">
+            Excluir Paciente
           </button>
         </div>
       </div>
@@ -26,7 +25,7 @@
       </ng-template>
       <label for="typeahead-basic">Nome do paciente:</label>
       <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="pesquisaPaciente"
-             [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formater"/>
+             [ngbTypeahead]="buscar" [resultTemplate]="rt" [inputFormatter]="formater"/>
       <table class="table" *ngIf="pesquisaPaciente">
         <thead>
         <tr>
@@ -59,6 +58,11 @@
         <table class="table">
           <thead>
           <tr>
+            <th scope="col">
+              <label for="selecionarTodos" >
+                <input [disabled]="pacientes.length == 0" id="selecionarTodos" type="checkbox" (click)="selecionarTodos($event)">
+              </label>
+            </th>
             <th scope="col">Id</th>
             <th scope="col">Nome</th>
             <th scope="col">Idade</th>
@@ -68,20 +72,24 @@
           </tr>
           </thead>
           <tbody>
-            <tr
-              *ngFor="let paciente of pacientes | paginate: {itemsPerPage: contador, currentPage: page + 1, totalItems: total }">
-              <th scope="row"> {{paciente.id}} </th>
-              <td><span>{{paciente.nomeCompleto}}</span></td>
-              <td> {{paciente.idade}} </td>
-              <td>
-                <a (click)="abrirResponsavelModal(paciente.responsaveis)">Responsável</a>
-              </td>
-              <td><i (click)="abrirFichaModal()" class="fa fa-edit"></i></td>
-              <td>
-                <i class="fa fa-google pr-5"></i>
-                <i class="fa fa-file-pdf-o"></i>
-              </td>
-            </tr>
+          <tr *ngFor="let paciente of pacientes | paginate: {itemsPerPage: contador, currentPage: page + 1, totalItems: total }">
+            <th scope="row">
+              <label>
+                <input type="checkbox" [(ngModel)]="campoSelecionado" name="campoSelecionado" (change)="selecionarPaciente(paciente)">
+              </label>
+            </th>
+            <th scope="row"> {{paciente.id}} </th>
+            <td><span>{{paciente.nomeCompleto}}</span></td>
+            <td> {{paciente.idade}} </td>
+            <td>
+              <a (click)="abrirResponsavelModal(paciente.responsaveis)">Responsável</a>
+            </td>
+            <td><i (click)="abrirFichaModal()" class="fa fa-edit"></i></td>
+            <td>
+              <i class="fa fa-google pr-5"></i>
+              <i (click)="downloadFicha()" class="fa fa-file-pdf-o"></i>
+            </td>
+          </tr>
           </tbody>
         </table>
         <div class="text-center">

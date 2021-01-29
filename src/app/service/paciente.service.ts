@@ -7,8 +7,8 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class PacienteService {
-  pacienteUrl = environment.apiUrlBase.concat('/pacientes/');
-  terapeutaUrl = environment.apiUrlBase.concat('/terapeutas/');
+
+  pacienteUrl = environment.apiUrlBase.concat('/pacientes');
 
   constructor(private http: HttpClient) {
   }
@@ -17,7 +17,7 @@ export class PacienteService {
     return this.http.post(this.pacienteUrl, paciente).pipe();
   }
 
-  excluirPaciente(): Observable<any> {
-    return this.http.delete(this.pacienteUrl);
+  excluirPacientes(pacientes: any): Observable<any> {
+    return this.http.request('delete', this.pacienteUrl, {body: pacientes});
   }
 }

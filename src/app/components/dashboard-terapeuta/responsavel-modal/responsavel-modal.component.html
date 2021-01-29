@@ -4,19 +4,31 @@
   </div>
 
   <div class="modal-body">
-    <div class="row">
+
+    <div>
+      <label>
+        <span> Selecione o responsável: </span>
+        <select class="form-control" [ngModel]="responsavelSelecionado">
+          <option *ngFor="let responsavel of responsaveis" [value]="responsavel">
+            {{responsavel.nomeCompleto}}
+          </option>
+        </select>
+      </label>
+    </div>
+
+    <div class="row pt-2">
       <div class="col">
         <label class="pr-3" for="responsavel-nome-completo">
           <span> Nome completo:</span>
           <input id="responsavel-nome-completo" class="form-control" type="text"
-                 value="{{responsaveis[0].nomeCompleto}}">
+                >
         </label>
       </div>
       <div class="col">
         <label for="responsavel-data-nascimento">
           <span>Data de Nascimento:</span>
           <input id="responsavel-data-nascimento" class="form-control" type="date" pattern="dd/MM/yyyy"
-                 value="{{responsaveis[0].dataNascimento}}">
+                >
         </label>
       </div>
     </div>
@@ -24,14 +36,14 @@
       <div class="col">
         <label class="pr-3" for="responsavel-telefone">
           <span>Telefone:</span>
-          <input id="responsavel-telefone" class="form-control" type="tel" value="{{responsaveis[0].telefone }}">
+          <input id="responsavel-telefone" class="form-control" type="tel" >
         </label>
       </div>
       <div class="col">
         <label for="responsavel-cpf">
           <span>CPF:</span>
-          <input id="responsavel-cpf" maxlength="14" class="form-control" type="text" mask="000.000.000-00"
-                 value="{{responsaveis[0].cpf}}">
+          <input id="responsavel-cpf" maxlength="14" class="form-control" type="text"
+                 >
         </label>
       </div>
     </div>
@@ -39,15 +51,10 @@
       <div class="col">
         <label class="pr-3" for="responsavel-parentesco">
           <span>Parentesco:</span>
-          <input id="responsavel-parentesco" class="form-control" type="text" value="{{responsaveis[0].parentesco}}">
+          <input id="responsavel-parentesco" class="form-control" type="text">
         </label>
       </div>
-      <div class="col">
-        <label for="responsavel-email">
-          <span>Email:</span>
-          <input id="responsavel-email" class="form-control" type="email" value="{{responsaveis[0].loginEmail}}">
-        </label>
-      </div>
+
     </div>
   </div>
 

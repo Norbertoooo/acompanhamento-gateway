@@ -8,7 +8,7 @@
         <div class="col">
           <label for="paciente-nome-completo">
             <span>Nome Completo:</span>
-            <input size="50" id="paciente-nome-completo" class="form-control" type="text"
+            <input size="55" id="paciente-nome-completo" class="form-control" type="text"
                    formControlName="nomeCompleto">
           </label>
         </div>
@@ -43,7 +43,7 @@
             <div class="col">
               <label for="responsavel-nome-completo">
                 <span> Nome completo:</span>
-                <input size="50" id="responsavel-nome-completo" class="form-control" type="text"
+                <input size="55" id="responsavel-nome-completo" class="form-control" type="text"
                        formControlName="nomeCompleto">
               </label>
             </div>
@@ -71,6 +71,7 @@
                        formControlName="cpf">
               </label>
             </div>
+
             <div class="col">
               <label for="responsavel-parentesco">
                 <span>Parentesco:</span>
@@ -79,10 +80,52 @@
             </div>
           </div>
 
-          <label for="responsavel-email">
+          <label for="responsavel-email" formGroupName="login">
             <span>Email:</span>
-            <input id="responsavel-email" class="form-control" type="email" formControlName="email">
+            <input size="55" id="responsavel-email" class="form-control" type="email" formControlName="email">
           </label>
+
+
+        <div formGroupName="endereco">
+          <div class="row">
+            <div class="col">
+              <label class="pr-3" for="cep">
+                <span>Cep:</span>
+                <input id="cep" class="form-control" type="number" formControlName="cep">
+              </label>
+            </div>
+            <div class="col">
+              <label for="numero">
+                <span>Número da casa/prédio:</span>
+                <input id="numero" class="form-control" type="number" formControlName="numero" >
+              </label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label class="pr-3" for="rua">
+                <span>Rua:</span>
+                <input id="rua" class="form-control" type="text" formControlName="rua" >
+              </label>
+            </div>
+            <div class="col">
+              <label for="bairro">
+                <span>Bairro:</span>
+                <input id="bairro" class="form-control" type="text" formControlName="bairro" >
+              </label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label for="detalhes">
+                <span>Detalhes:</span>
+                <textarea cols="58" rows="3" id="detalhes" class="form-control" formControlName="detalhes"></textarea>
+              </label>
+            </div>
+          </div>
+        </div>
         </div>
       </form>
     </div>

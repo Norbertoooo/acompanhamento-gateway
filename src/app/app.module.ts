@@ -26,6 +26,8 @@ import {PacienteService} from './service/paciente.service';
 import localePtBr from '@angular/common/locales/pt';
 import { DashboardResponsavelComponent } from './components/dashboard-responsavel/dashboard-responsavel.component';
 import { DadosTerapeutaComponent } from './components/dados-terapeuta/dados-terapeuta.component';
+import { ExcluirPacienteModalComponent } from './components/dashboard-terapeuta/excluir-paciente-modal/excluir-paciente-modal.component';
+import {FichaService} from './service/ficha.service';
 
 registerLocaleData(localePtBr, 'pt-BR');
 
@@ -47,7 +49,8 @@ export const maskConfig: Partial<IConfig> | (() => Partial<IConfig>) = {};
     CadastrarPacienteModalComponent,
     AlertComponent,
     DashboardResponsavelComponent,
-    DadosTerapeutaComponent
+    DadosTerapeutaComponent,
+    ExcluirPacienteModalComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,7 @@ export const maskConfig: Partial<IConfig> | (() => Partial<IConfig>) = {};
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: LOCALE_ID, useValue: 'pt-BR'},
-    AuthenticationService, PacienteService, NgbActiveModal, NgbModal
+    AuthenticationService, PacienteService, NgbActiveModal, NgbModal, FichaService
   ],
   bootstrap: [AppComponent]
 })

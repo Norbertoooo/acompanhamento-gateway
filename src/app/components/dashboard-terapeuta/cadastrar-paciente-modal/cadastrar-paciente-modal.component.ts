@@ -29,8 +29,17 @@ export class CadastrarPacienteModalComponent implements OnInit {
             nomeCompleto: [],
             cpf: [],
             parentesco: [],
-            email: [],
-            telefone: []
+            telefone: [],
+            login: this.formBuilder.group({
+              email: []
+            }),
+            endereco: this.formBuilder.group({
+              cep: [],
+              numero: [],
+              bairro: [],
+              rua: [],
+              detalhes: []
+            })
           })
         ])
       }
