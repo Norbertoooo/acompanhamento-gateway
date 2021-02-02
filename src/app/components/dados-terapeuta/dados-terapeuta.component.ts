@@ -9,6 +9,7 @@ import {TerapeutaModel} from '../../model/terapeuta.model';
 export class DadosTerapeutaComponent implements OnInit {
 
   @Input() terapeuta = new TerapeutaModel();
+  bloqueado = true;
 
   constructor() {
   }
@@ -25,4 +26,7 @@ export class DadosTerapeutaComponent implements OnInit {
     }
   }
 
+  editarTerapeuta(): void {
+    this.bloqueado === true ? this.bloqueado = false : this.bloqueado = true ;
+  }
 }

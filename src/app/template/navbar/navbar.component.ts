@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
   }
 
   usuarioLogado(): boolean {
-    return localStorage.getItem('emailLogado') !== null;
+    return localStorage.getItem('token') !== null;
   }
 
   logout(): void {

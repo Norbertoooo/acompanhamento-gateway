@@ -36,11 +36,15 @@ export class DashboardTerapeutaComponent implements OnInit {
   pacientesSelecionados: any;
   formater = (x: { nomeCompleto: string }) => x.nomeCompleto;
 
-  constructor(private activatedRoute: ActivatedRoute, private terapeutaService: DashboardTerapeutaService, private alertService: AlertModalService,
-              private modal: NgbModal, private pacienteService: PacienteService, private fichaService: FichaService) {
+  constructor(private activatedRoute: ActivatedRoute, private terapeutaService: DashboardTerapeutaService,
+              private alertService: AlertModalService, private modal: NgbModal,
+              private pacienteService: PacienteService, private fichaService: FichaService) {
   }
 
   ngOnInit(): void {
+    if (this.terapeuta.endereco == null) {
+      this.alertService.exibirAviso('Por favor, Preencha o endereço');
+    }
     this.usuarioLogado = localStorage.getItem('emailLogado');
     this.obterPacientes();
     this.obterDadosTerapeuta();

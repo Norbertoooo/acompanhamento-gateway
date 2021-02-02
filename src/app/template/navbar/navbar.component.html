@@ -1,7 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between">
   <a class="navbar-brand" href="#">Acompanhamento - Web</a>
-  <div *ngIf="usuarioLogado() == false">
-    <button class="btn btn-dark" type="submit" (click)="logout()">Sair</button>
+  <div class="btn-group text-right">
+    <button class="btn btn-success mr-3" type="submit" (click)="sobre()">
+      <span> Sobre o projeto <i class="fa fa-info"></i></span>
+    </button>
+    <button *ngIf="usuarioLogado()" class="btn btn-info mr-3" type="submit" [routerLink]="['dashboard-terapeuta']">Dashboard</button>
+    <button *ngIf="usuarioLogado()" class="btn btn-info" type="submit" (click)="logout()">Sair</button>
   </div>
-  <button class="btn btn-success" type="submit" (click)="sobre()">Sobre o projeto</button>
 </nav>

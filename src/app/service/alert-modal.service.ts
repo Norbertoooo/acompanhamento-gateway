@@ -28,4 +28,8 @@ export class AlertModalService {
     this.exibirAlerta(mensagem, 'success');
   }
 
+  exibirAviso(mensagem: string): void {
+    this.exibirAlerta(mensagem, 'warning');
+  }
+
 }

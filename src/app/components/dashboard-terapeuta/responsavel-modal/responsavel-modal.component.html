@@ -7,8 +7,9 @@
 
     <div>
       <label>
-        <span> Selecione o responsável: </span>
+        <span></span>
         <select class="form-control" [ngModel]="responsavelSelecionado">
+          <option [defaultSelected]="true" selected>  Selecione o responsável </option>
           <option *ngFor="let responsavel of responsaveis" [value]="responsavel">
             {{responsavel.nomeCompleto}}
           </option>
@@ -21,7 +22,7 @@
         <label class="pr-3" for="responsavel-nome-completo">
           <span> Nome completo:</span>
           <input id="responsavel-nome-completo" class="form-control" type="text"
-                >
+                [value]="responsavelSelecionado.nomeCompleto">
         </label>
       </div>
       <div class="col">
