@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../helpers/authentication.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AlertModalService} from '../../service/alert-modal.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private alertService: AlertModalService) {
   }
 
   ngOnInit(): void {
@@ -33,8 +35,10 @@ export class LoginComponent implements OnInit {
         if (result.perfil === '') {
           this.router.navigateByUrl('/dashboard-responsavel', {state: {result}}).then();
         }
-        localStorage.setItem('emailLogado', result.login.email);
-      }, (error) => (console.log(error))
+        sessionStorage.setItem('emailLogado', result.login.email);
+      }, (error) => {
+        this.alertService.exibirErro(error);
+      }
     );
   }
 

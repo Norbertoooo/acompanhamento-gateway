@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {ResponsavelModel} from '../../../model/responsavel.model';
+import {Responsavel} from '../../../model/responsavel.model';
 import {EventEmitter} from 'events';
 
 @Component({
@@ -13,9 +13,9 @@ export class ResponsavelModalComponent implements OnInit {
   @Output()
   event = new EventEmitter();
 
-  responsaveis: ResponsavelModel[];
+  responsaveis: Responsavel[];
 
-  responsavelSelecionado = new ResponsavelModel();
+  responsavelSelecionado = {} as Responsavel;
 
   constructor(private activeModal: NgbActiveModal) {
   }

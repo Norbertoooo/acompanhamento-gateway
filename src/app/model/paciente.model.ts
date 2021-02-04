@@ -1,8 +1,8 @@
-import {ResponsavelModel} from './responsavel.model';
+import {Responsavel} from './responsavel.model';
 
-export class PacienteModel {
+export interface Paciente {
   id?: number;
   nomeCompleto?: string;
-  idade?: number;
-  responsaveis?: ResponsavelModel[];
+  dataNascimento?: string;
+  responsaveis?: Responsavel[];
 }

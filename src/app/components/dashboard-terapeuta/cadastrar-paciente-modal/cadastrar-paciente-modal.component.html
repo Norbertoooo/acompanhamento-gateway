@@ -17,7 +17,8 @@
         <div class="col">
           <label for="paciente-data-nascimento">
             <span>Data de Nascimento:</span>
-            <input id="paciente-data-nascimento" class="form-control" type="text" formControlName="idade">
+            <input id="paciente-data-nascimento" class="form-control" type="date" pattern="dd/MM/yyyy"
+                   formControlName="dataNascimento">
           </label>
         </div>
         <div class="col">
@@ -79,53 +80,70 @@
               </label>
             </div>
           </div>
+          <div>
+            <label for="responsavel-email" formGroupName="login">
+              <span>Email:</span>
+              <input size="55" id="responsavel-email" class="form-control" type="email" formControlName="email">
+            </label>
+          </div>
 
-          <label for="responsavel-email" formGroupName="login">
-            <span>Email:</span>
-            <input size="55" id="responsavel-email" class="form-control" type="email" formControlName="email">
-          </label>
-
-
-        <div formGroupName="endereco">
-          <div class="row">
-            <div class="col">
-              <label class="pr-3" for="cep">
-                <span>Cep:</span>
-                <input id="cep" class="form-control" type="number" formControlName="cep">
-              </label>
+          <div formGroupName="endereco">
+            <div class="row">
+              <div class="col">
+                <label class="pr-3" for="cep">
+                  <span>Cep:</span>
+                  <input id="cep" class="form-control" type="number" formControlName="cep">
+                </label>
+              </div>
+              <div class="col">
+                <label for="numero">
+                  <span>Número da casa/prédio:</span>
+                  <input id="numero" class="form-control" type="number" formControlName="numero">
+                </label>
+              </div>
             </div>
-            <div class="col">
-              <label for="numero">
-                <span>Número da casa/prédio:</span>
-                <input id="numero" class="form-control" type="number" formControlName="numero" >
-              </label>
+
+            <div class="row">
+              <div class="col">
+                <label class="pr-3" for="rua">
+                  <span>Rua:</span>
+                  <input id="rua" class="form-control" type="text" formControlName="rua">
+                </label>
+              </div>
+              <div class="col">
+                <label for="bairro">
+                  <span>Bairro:</span>
+                  <input id="bairro" class="form-control" type="text" formControlName="bairro">
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <label class="pr-3" for="cidade">
+                  <span>Cidade:</span>
+                  <input id="cidade" class="form-control" type="text" formControlName="cidade">
+                </label>
+              </div>
+              <div class="col">
+                <label for="estado">
+                  <span>Estado:</span>
+                  <input id="estado" class="form-control" type="text" formControlName="estado">
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <label for="complemento">
+                  <span>Complemento:</span>
+                  <textarea cols="58" rows="3" id="complemento" class="form-control"
+                            formControlName="complemento"></textarea>
+                </label>
+              </div>
             </div>
           </div>
 
-          <div class="row">
-            <div class="col">
-              <label class="pr-3" for="rua">
-                <span>Rua:</span>
-                <input id="rua" class="form-control" type="text" formControlName="rua" >
-              </label>
-            </div>
-            <div class="col">
-              <label for="bairro">
-                <span>Bairro:</span>
-                <input id="bairro" class="form-control" type="text" formControlName="bairro" >
-              </label>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <label for="detalhes">
-                <span>Detalhes:</span>
-                <textarea cols="58" rows="3" id="detalhes" class="form-control" formControlName="detalhes"></textarea>
-              </label>
-            </div>
-          </div>
-        </div>
         </div>
       </form>
     </div>

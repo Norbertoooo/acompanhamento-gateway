@@ -1,17 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {DashboardTerapeutaService} from './dashboard-terapeuta.service';
-import {PacienteModel} from '../../model/paciente.model';
+import {Paciente} from '../../model/paciente.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {PacienteModalComponent} from './paciente-modal/paciente-modal.component';
 import {FichaModalComponent} from './ficha-modal/ficha-modal.component';
 import {ResponsavelModalComponent} from './responsavel-modal/responsavel-modal.component';
 import {ActivatedRoute} from '@angular/router';
-import {TerapeutaModel} from '../../model/terapeuta.model';
+import {Terapeuta} from '../../model/terapeuta.model';
 import {CadastrarPacienteModalComponent} from './cadastrar-paciente-modal/cadastrar-paciente-modal.component';
 import {PacienteService} from '../../service/paciente.service';
 import {Observable} from 'rxjs';
 import {debounceTime, map} from 'rxjs/operators';
-import {ResponsavelModel} from '../../model/responsavel.model';
+import {Responsavel} from '../../model/responsavel.model';
 import {ExcluirPacienteModalComponent} from './excluir-paciente-modal/excluir-paciente-modal.component';
 import {FichaService} from '../../service/ficha.service';
 import {AlertModalService} from '../../service/alert-modal.service';
@@ -23,17 +23,18 @@ import {AlertModalService} from '../../service/alert-modal.service';
 })
 export class DashboardTerapeutaComponent implements OnInit {
 
-  pacientes: PacienteModel[] = [];
-  paciente = new PacienteModel();
+  pacientes: Paciente[] = [];
+  paciente: Paciente;
   usuarioLogado: string;
-  terapeuta: TerapeutaModel = new TerapeutaModel();
+  terapeuta: Terapeuta;
   contador = 5;
   page = 0;
   total: number;
   ahPacientesSelecionados = false;
-  pesquisaPaciente: PacienteModel;
+  pesquisaPaciente: Paciente;
   campoSelecionado: any;
   pacientesSelecionados: any;
+  isCollapsed = false;
   formater = (x: { nomeCompleto: string }) => x.nomeCompleto;
 
   constructor(private activatedRoute: ActivatedRoute, private terapeutaService: DashboardTerapeutaService,
@@ -42,10 +43,7 @@ export class DashboardTerapeutaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.terapeuta.endereco == null) {
-      this.alertService.exibirAviso('Por favor, Preencha o endereço');
-    }
-    this.usuarioLogado = localStorage.getItem('emailLogado');
+    this.usuarioLogado = sessionStorage.getItem('emailLogado');
     this.obterPacientes();
     this.obterDadosTerapeuta();
   }
@@ -56,7 +54,7 @@ export class DashboardTerapeutaComponent implements OnInit {
       map(term => term === '' ? []
         : this.pacientes.filter(v => v.nomeCompleto.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     );
-  };
+  }
 
   obterPacientes(): void {
     this.terapeutaService.listarPacientes(this.page, this.contador).subscribe((response) => {
@@ -74,7 +72,7 @@ export class DashboardTerapeutaComponent implements OnInit {
     this.terapeutaService.buscarDadosTerapeuta().subscribe((response) => this.terapeuta = response);
   }
 
-  abrirResponsavelModal(responsaveis: ResponsavelModel[]): void {
+  abrirResponsavelModal(responsaveis: Responsavel[]): void {
     const modalRef = this.modal.open(ResponsavelModalComponent).componentInstance;
     modalRef.responsaveis = responsaveis;
   }
@@ -126,7 +124,7 @@ export class DashboardTerapeutaComponent implements OnInit {
     }
   }
 
-  selecionarPaciente(paciente: PacienteModel): void {
+  selecionarPaciente(paciente: Paciente): void {
 
   }
 

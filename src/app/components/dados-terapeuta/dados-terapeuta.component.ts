@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TerapeutaModel} from '../../model/terapeuta.model';
+import {Terapeuta} from '../../model/terapeuta.model';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-dados-terapeuta',
@@ -8,25 +9,42 @@ import {TerapeutaModel} from '../../model/terapeuta.model';
 })
 export class DadosTerapeutaComponent implements OnInit {
 
-  @Input() terapeuta = new TerapeutaModel();
+  @Input() terapeuta = {} as Terapeuta;
   bloqueado = true;
+  formularioCadastro: FormGroup;
+  isCollapsed = false;
 
-  constructor() {
+  constructor(private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
-  }
-
-  formatarCpf(): string {
-    if (this.terapeuta.cpf !== null) {
-      const cpf = this.terapeuta.cpf.replace(/[^\d]/g, '');
-      return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-    } else {
-      return '';
-    }
+    this.formularioCadastro = this.formBuilder.group(
+      {
+        nomeCompleto: [],
+        crfa: [],
+        dataNascimento: [],
+        telefone: [],
+        formacao: [],
+        especialidade: [],
+        cpf: [],
+        login: this.formBuilder.group(
+          {
+            email: [[Validators.required, Validators.email]],
+          }
+        ),
+        endereco: this.formBuilder.group({
+          cep: [],
+          rua: [],
+          bairro: [],
+          cidade: [],
+          estado: [],
+          complemento: [],
+          numero: []
+        })
+      });
   }
 
   editarTerapeuta(): void {
-    this.bloqueado === true ? this.bloqueado = false : this.bloqueado = true ;
+    this.bloqueado === true ? this.bloqueado = false : this.bloqueado = true;
   }
 }

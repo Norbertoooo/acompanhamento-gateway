@@ -8,9 +8,8 @@
     <div>
       <label>
         <span></span>
-        <select class="form-control" [ngModel]="responsavelSelecionado">
-          <option [defaultSelected]="true" selected>  Selecione o responsável </option>
-          <option *ngFor="let responsavel of responsaveis" [value]="responsavel">
+        <select class="form-control">
+          <option *ngFor="let responsavel of responsaveis">
             {{responsavel.nomeCompleto}}
           </option>
         </select>
@@ -21,15 +20,13 @@
       <div class="col">
         <label class="pr-3" for="responsavel-nome-completo">
           <span> Nome completo:</span>
-          <input id="responsavel-nome-completo" class="form-control" type="text"
-                [value]="responsavelSelecionado.nomeCompleto">
+          <input id="responsavel-nome-completo" class="form-control" type="text">
         </label>
       </div>
       <div class="col">
         <label for="responsavel-data-nascimento">
           <span>Data de Nascimento:</span>
-          <input id="responsavel-data-nascimento" class="form-control" type="date" pattern="dd/MM/yyyy"
-                >
+          <input id="responsavel-data-nascimento" class="form-control" type="date" pattern="dd/MM/yyyy">
         </label>
       </div>
     </div>
@@ -37,14 +34,13 @@
       <div class="col">
         <label class="pr-3" for="responsavel-telefone">
           <span>Telefone:</span>
-          <input id="responsavel-telefone" class="form-control" type="tel" >
+          <input id="responsavel-telefone" class="form-control" type="tel">
         </label>
       </div>
       <div class="col">
         <label for="responsavel-cpf">
           <span>CPF:</span>
-          <input id="responsavel-cpf" maxlength="14" class="form-control" type="text"
-                 >
+          <input id="responsavel-cpf" maxlength="14" class="form-control" type="text">
         </label>
       </div>
     </div>
@@ -53,6 +49,13 @@
         <label class="pr-3" for="responsavel-parentesco">
           <span>Parentesco:</span>
           <input id="responsavel-parentesco" class="form-control" type="text">
+        </label>
+      </div>
+
+      <div class="col">
+        <label class="pr-3" for="responsavel-email">
+          <span>Email:</span>
+          <input id="responsavel-email" class="form-control" type="text">
         </label>
       </div>
 
@@ -80,6 +83,7 @@
         </label>
       </div>
     </div>
+
     <div class="row">
       <div class="col">
         <label class="pr-3" for="rua">
@@ -91,6 +95,21 @@
         <label for="bairro">
           <span>Bairro:</span>
           <input id="bairro" class="form-control" type="text">
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label class="pr-3" for="rua">
+          <span>Cidade:</span>
+          <input id="cidade" class="form-control" type="text">
+        </label>
+      </div>
+      <div class="col">
+        <label for="bairro">
+          <span>Estado:</span>
+          <input id="estado" class="form-control" type="text">
         </label>
       </div>
     </div>

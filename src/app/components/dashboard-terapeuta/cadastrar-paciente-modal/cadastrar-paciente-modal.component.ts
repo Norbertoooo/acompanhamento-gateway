@@ -3,11 +3,12 @@ import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import {PacienteService} from '../../../service/paciente.service';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {AlertModalService} from '../../../service/alert-modal.service';
+import {DatePipe, formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-ficha-modal',
   templateUrl: './cadastrar-paciente-modal.component.html',
-  styleUrls: ['./cadastrar-paciente-modal.component.css']
+  styleUrls: ['./cadastrar-paciente-modal.component.css'],
 })
 export class CadastrarPacienteModalComponent implements OnInit {
 
@@ -23,7 +24,7 @@ export class CadastrarPacienteModalComponent implements OnInit {
     this.formularioCadastroPaciente = this.formBuilder.group(
       {
         nomeCompleto: [],
-        idade: [],
+        dataNascimento: [],
         responsaveis: new FormArray([
           this.formBuilder.group({
             nomeCompleto: [],
@@ -38,7 +39,9 @@ export class CadastrarPacienteModalComponent implements OnInit {
               numero: [],
               bairro: [],
               rua: [],
-              detalhes: []
+              cidade: [],
+              estado: [],
+              complemento: []
             })
           })
         ])
@@ -48,6 +51,7 @@ export class CadastrarPacienteModalComponent implements OnInit {
 
   cadastar(): void {
     console.log(this.formularioCadastroPaciente.value);
+    this.formularioCadastroPaciente.controls.dataNascimento.setValue(formatDate(this.formularioCadastroPaciente.get('dataNascimento').value, 'dd/MM/yyyy', 'pt-BR'));
     this.pacienteService.cadastrarPaciente(this.formularioCadastroPaciente.value)
       .subscribe(() => {
         this.alertService.exibirSucesso('Paciente cadastrado com sucesso!');

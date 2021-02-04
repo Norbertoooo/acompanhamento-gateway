@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {formatDate} from '@angular/common';
-import {LoginModel} from '../../model/login.model';
+import {Login} from '../../model/login.model';
 import {LoginService} from '../../service/login.service';
 import {AlertModalService} from '../../service/alert-modal.service';
 
@@ -14,7 +14,7 @@ import {AlertModalService} from '../../service/alert-modal.service';
 export class CadastrarComponent implements OnInit {
 
   @Input()
-  Login: LoginModel;
+  Login: Login;
   formularioCadastro: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private loginService: LoginService,
@@ -36,7 +36,16 @@ export class CadastrarComponent implements OnInit {
             email: [null, [Validators.required, Validators.email]],
             senha: [null, [Validators.required]]
           }
-        )
+        ),
+        endereco: this.formBuilder.group({
+          cep: [],
+          rua: [],
+          bairro: [],
+          cidade: [],
+          estado: [],
+          complemento: [],
+          numero: []
+        })
       });
   }
 

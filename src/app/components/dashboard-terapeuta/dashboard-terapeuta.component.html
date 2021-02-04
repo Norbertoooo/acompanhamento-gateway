@@ -9,17 +9,22 @@
           <h3>Lista de Pacientes</h3>
         </div>
         <div class="col text-right">
-          <button type=submit class="btn btn-primary mr-3" (click)="abrirCadastroPacienteModal()">Adicionar
-            Paciente
+          <button type=button class="btn btn-link mr-3 text-center" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed" >
+            <span *ngIf="isCollapsed"><i class="fa fa-eye tamanho-icone"></i></span>
+            <span *ngIf="!isCollapsed"><i class="fa fa-eye-slash tamanho-icone"></i></span>
           </button>
-          <button type=submit class="btn btn-danger" [disabled]="pacientesSelecionados == null" (click)="abrirExcluirPacienteModal()">
-            Excluir Paciente
+          <button type=submit class="btn btn-primary mr-3" (click)="abrirCadastroPacienteModal()">
+            <span><i class="fa fa-plus mr-2"></i> Cadastrar Paciente </span>
+          </button>
+          <button type=submit class="btn btn-danger" [disabled]="pacientesSelecionados == null"
+                  (click)="abrirExcluirPacienteModal()">
+            <span><i class="fa fa-trash mr-2"></i> Excluir Paciente </span>
           </button>
         </div>
       </div>
     </div>
 
-    <div class="card-body">
+    <div class="card-body" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
       <ng-template #rt let-r="result" let-t="term">
         <ngb-highlight [result]="r.nomeCompleto" [term]="t"></ngb-highlight>
       </ng-template>
@@ -41,7 +46,7 @@
         <tr>
           <th scope="row"> {{pesquisaPaciente.id}} </th>
           <td><span>{{pesquisaPaciente.nomeCompleto}}</span></td>
-          <td> {{pesquisaPaciente.idade}} </td>
+          <td> {{pesquisaPaciente.dataNascimento}} </td>
           <td><a (click)="abrirResponsavelModal(pesquisaPaciente.responsaveis)">Responsável</a></td>
           <td><i (click)="abrirFichaModal()" class="fa fa-edit"></i></td>
           <td>
@@ -53,41 +58,55 @@
       </table>
     </div>
 
-    <div class="card-body">
+    <div class="card-body" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
       <div class="table-responsive">
         <table class="table">
           <thead>
           <tr>
             <th scope="col">
-              <label for="selecionarTodos" >
-                <input [disabled]="pacientes.length == 0" id="selecionarTodos" type="checkbox" (click)="selecionarTodos($event)">
+              <label for="selecionarTodos">
+                <input [disabled]="pacientes.length == 0" id="selecionarTodos" type="checkbox"
+                       (click)="selecionarTodos($event)">
               </label>
             </th>
             <th scope="col">Id</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Idade</th>
+            <th scope="col">Nome Completo</th>
+            <th scope="col">Data de Nascimento</th>
             <th scope="col">Responsável</th>
             <th scope="col">Ficha</th>
             <th scope="col">Exportar Ficha</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let paciente of pacientes | paginate: {itemsPerPage: contador, currentPage: page + 1, totalItems: total }">
+          <tr
+            *ngFor="let paciente of pacientes | paginate: {itemsPerPage: contador, currentPage: page + 1, totalItems: total }">
             <th scope="row">
               <label>
-                <input type="checkbox" [(ngModel)]="campoSelecionado" name="campoSelecionado" (change)="selecionarPaciente(paciente)">
+                <input type="checkbox" [(ngModel)]="campoSelecionado" name="campoSelecionado"
+                       (change)="selecionarPaciente(paciente)">
               </label>
             </th>
             <th scope="row"> {{paciente.id}} </th>
             <td><span>{{paciente.nomeCompleto}}</span></td>
-            <td> {{paciente.idade}} </td>
+            <td> {{paciente.dataNascimento}} </td>
             <td>
-              <a (click)="abrirResponsavelModal(paciente.responsaveis)">Responsável</a>
+              <button class="btn btn-link text-center ml-3 tamanho-icone" (click)="abrirResponsavelModal(paciente.responsaveis)">
+                <i class="fa fa-female"></i>
+                <i class="fa fa-male"></i>
+              </button>
             </td>
-            <td><i (click)="abrirFichaModal()" class="fa fa-edit"></i></td>
             <td>
-              <i class="fa fa-google pr-5"></i>
-              <i (click)="downloadFicha()" class="fa fa-file-pdf-o"></i>
+              <button class="btn btn-link tamanho-icone">
+                <i (click)="abrirFichaModal()" class="fa fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-link tamanho-icone">
+                <i class="fa fa-google"></i>
+              </button>
+              <button class="btn btn-link tamanho-icone" (click)="downloadFicha()">
+                <i class="fa fa-file-pdf-o"></i>
+              </button>
             </td>
           </tr>
           </tbody>
@@ -101,4 +120,5 @@
       </div>
     </div>
   </div>
+
 </div>

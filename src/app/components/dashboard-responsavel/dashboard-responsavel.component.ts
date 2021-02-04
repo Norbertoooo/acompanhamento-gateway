@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {ResponsavelModel} from '../../model/responsavel.model';
+import {Component, Input, OnInit} from '@angular/core';
+import {Responsavel} from '../../model/responsavel.model';
 
 @Component({
   selector: 'app-dashboard-responsavel',
@@ -8,7 +8,7 @@ import {ResponsavelModel} from '../../model/responsavel.model';
 })
 export class DashboardResponsavelComponent implements OnInit {
 
-  responsavel = new ResponsavelModel();
+  @Input() responsavel: Responsavel;
 
   constructor() {
   }

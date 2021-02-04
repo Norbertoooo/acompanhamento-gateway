@@ -1,18 +1,16 @@
-import {EnderecoModel} from './endereco.model';
-import {LoginModel} from './login.model';
+import {Endereco} from './endereco.model';
+import {Login} from './login.model';
 
-export class TerapeutaModel {
-  id?: number;
-  nomeCompleto?: string;
-  idade?: number;
-  telefone?: number;
-  crp?: number;
-  cpf = '';
-  especialidade?: string;
-  formacao?: string;
-  endereco?: EnderecoModel;
-  login?: LoginModel;
-  crfa?: string;
-  loginEmail?: string;
-  dataNascimento?: Date;
+export interface Terapeuta {
+  id: number;
+  nomeCompleto: string;
+  telefone: number;
+  cpf: string;
+  especialidade: string;
+  formacao: string;
+  endereco: Endereco;
+  login: Login;
+  crfa: string;
+  loginEmail: string;
+  dataNascimento: string;
 }

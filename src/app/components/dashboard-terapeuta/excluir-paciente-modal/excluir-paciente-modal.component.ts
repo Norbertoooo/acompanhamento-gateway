@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {AlertModalService} from '../../../service/alert-modal.service';
-import {PacienteModel} from '../../../model/paciente.model';
+import {Paciente} from '../../../model/paciente.model';
 import {PacienteService} from '../../../service/paciente.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class ExcluirPacienteModalComponent implements OnInit {
 
   @Output() event = new EventEmitter();
 
-  pacientesSelecionados: PacienteModel[];
+  pacientesSelecionados: Paciente[];
 
   constructor(private activeModal: NgbActiveModal, private alertService: AlertModalService, private pacienteService: PacienteService) {
   }

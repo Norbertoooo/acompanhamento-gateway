@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {LoginModel} from '../model/login.model';
+import {Login} from '../model/login.model';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 
@@ -16,11 +16,11 @@ export class LoginService {
   constructor(private http: HttpClient) {
   }
 
-  login(login: LoginModel): Observable<any> {
-    return this.http.post(this.loginUrl, login).pipe();
+  login(login: Login): Observable<any> {
+    return this.http.post(this.loginUrl, login);
   }
 
   cadastrar(request: any): Observable<any> {
-    return this.http.post(this.registrarUrl, request).pipe();
+    return this.http.post(this.registrarUrl, request);
   }
 }
