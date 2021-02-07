@@ -16,6 +16,32 @@ export class CadastrarComponent implements OnInit {
   @Input()
   Login: Login;
   formularioCadastro: FormGroup;
+  estados = [ 'Acre',
+    'Alagoas',
+    'Amapá',
+    'Amazonas',
+    'Bahia',
+    'Ceará',
+    'Espírito Santo',
+    'Goiás',
+    'Maranhão',
+    'Mato Grosso',
+    'Mato Grosso do Sul',
+    'Minas Gerais',
+    'Pará',
+    'Paraíba',
+    'Paraná',
+    'Pernambuco',
+    'Piauí',
+    'Rio de Janeiro',
+    'Rio Grande do Norte',
+    'Rio Grande do Sul',
+    'Rondônia',
+    'Roraima',
+    'Santa Catarina',
+    'São Paulo',
+    'Sergipe',
+    'Tocantins'];
 
   constructor(private formBuilder: FormBuilder, private loginService: LoginService,
               private router: Router, private alertService: AlertModalService) {

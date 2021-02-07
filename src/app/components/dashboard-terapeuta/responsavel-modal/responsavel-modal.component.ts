@@ -22,10 +22,10 @@ export class ResponsavelModalComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.responsaveis);
+    this.responsavelSelecionado = this.responsaveis[0];
   }
 
   cancelar(): void {
-    console.log(this.responsavelSelecionado);
     this.activeModal.dismiss('close');
   }
 

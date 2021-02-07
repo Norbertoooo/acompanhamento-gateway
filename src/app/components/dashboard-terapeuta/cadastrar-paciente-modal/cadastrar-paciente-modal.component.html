@@ -1,152 +1,171 @@
 <div class="modal-open">
-  <div class="modal-header">
-    <h3>Cadastrar novo paciente</h3>
+
+  <div class="modal-header color-modal-header" >
+    <div>
+      <h3>Cadastrar novo paciente</h3>
+    </div>
   </div>
+
   <div class="modal-body">
+
     <form [formGroup]="formularioCadastroPaciente">
       <div class="row">
-        <div class="col">
+
+        <div class="col-8">
           <label for="paciente-nome-completo">
-            <span>Nome Completo:</span>
-            <input size="55" id="paciente-nome-completo" class="form-control" type="text"
+            <span class="font-weight-bold">Nome Completo:</span>
+            <input size="60" id="paciente-nome-completo" class="form-control" type="text"
                    formControlName="nomeCompleto">
           </label>
         </div>
-      </div>
-      <div class="row">
-        <div class="col">
+
+        <div class="col-4">
           <label for="paciente-data-nascimento">
-            <span>Data de Nascimento:</span>
+            <span class="font-weight-bold">Data de Nascimento:</span>
             <input id="paciente-data-nascimento" class="form-control" type="date" pattern="dd/MM/yyyy"
                    formControlName="dataNascimento">
           </label>
         </div>
-        <div class="col">
-          <label for="paciente-cpf">
-            <span>CPF:</span>
-            <input id="paciente-cpf" maxlength="14" class="form-control" min="0" type="text" mask="000.000.000-00">
-          </label>
-        </div>
+
       </div>
     </form>
+
   </div>
-  <hr>
-  <div class="modal-header pt-0">
-    <h3>Responsável</h3>
-  </div>
-  <div class="modal-body">
-    <div [formGroup]="formularioCadastroPaciente">
-      <form formArrayName="responsaveis"
-            *ngFor="let responsavel of formularioCadastroPaciente.get('responsaveis')['controls'] let i = index; ">
-        <div [formGroupName]="i">
 
-          <div class="row">
-            <div class="col">
-              <label for="responsavel-nome-completo">
-                <span> Nome completo:</span>
-                <input size="55" id="responsavel-nome-completo" class="form-control" type="text"
-                       formControlName="nomeCompleto">
-              </label>
-            </div>
+  <div>
+    <div>
+      <div class="card-header color-modal-header" style="background-color: #499BF2">
+        <div class="row">
+          <div class="col">
+            <h3>Responsável</h3>
           </div>
-
-          <div class="row">
-            <div class="col">
-              <label for="responsavel-data-nascimento">
-                <span>Data de Nascimento</span>
-                <input id="responsavel-data-nascimento" class="form-control" type="date" pattern="dd/MM/yyyy">
-              </label>
-            </div>
-            <div class="col">
-              <label for="responsavel-telefone">
-                <span>Telefone:</span>
-                <input id="responsavel-telefone" class="form-control" type="tel" formControlName="telefone">
-              </label>
-            </div>
+          <div class="col text-right">
+            <button type="button" class="btn btn-primary mr-2" (click)="adicionarResponsavel()">
+              <span><i class="fa fa-plus mr-1"></i> Adicionar </span>
+            </button>
+            <button type="button" class="btn btn-danger">
+              <span><i class="fa fa-trash mr-1 "></i> Remover </span>
+            </button>
           </div>
-          <div class="row">
-            <div class="col">
-              <label for="responsavel-cpf">
-                <span>CPF:</span>
-                <input id="responsavel-cpf" maxlength="14" class="form-control" type="text" mask="000.000.000-00"
-                       formControlName="cpf">
-              </label>
-            </div>
-
-            <div class="col">
-              <label for="responsavel-parentesco">
-                <span>Parentesco:</span>
-                <input id="responsavel-parentesco" class="form-control" type="text" formControlName="parentesco">
-              </label>
-            </div>
-          </div>
-          <div>
-            <label for="responsavel-email" formGroupName="login">
-              <span>Email:</span>
-              <input size="55" id="responsavel-email" class="form-control" type="email" formControlName="email">
-            </label>
-          </div>
-
-          <div formGroupName="endereco">
-            <div class="row">
-              <div class="col">
-                <label class="pr-3" for="cep">
-                  <span>Cep:</span>
-                  <input id="cep" class="form-control" type="number" formControlName="cep">
-                </label>
-              </div>
-              <div class="col">
-                <label for="numero">
-                  <span>Número da casa/prédio:</span>
-                  <input id="numero" class="form-control" type="number" formControlName="numero">
-                </label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col">
-                <label class="pr-3" for="rua">
-                  <span>Rua:</span>
-                  <input id="rua" class="form-control" type="text" formControlName="rua">
-                </label>
-              </div>
-              <div class="col">
-                <label for="bairro">
-                  <span>Bairro:</span>
-                  <input id="bairro" class="form-control" type="text" formControlName="bairro">
-                </label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col">
-                <label class="pr-3" for="cidade">
-                  <span>Cidade:</span>
-                  <input id="cidade" class="form-control" type="text" formControlName="cidade">
-                </label>
-              </div>
-              <div class="col">
-                <label for="estado">
-                  <span>Estado:</span>
-                  <input id="estado" class="form-control" type="text" formControlName="estado">
-                </label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col">
-                <label for="complemento">
-                  <span>Complemento:</span>
-                  <textarea cols="58" rows="3" id="complemento" class="form-control"
-                            formControlName="complemento"></textarea>
-                </label>
-              </div>
-            </div>
-          </div>
-
         </div>
-      </form>
+      </div>
+
+      <div class="card-body" [formGroup]="formularioCadastroPaciente">
+        <form  *ngFor="let responsavel of responsavelArray.controls; let i = index; " formArrayName="responsaveis">
+          <div [formGroupName]="i">
+            <div  class="row">
+
+              <div class="col-6">
+                <label for="responsavel-nome-completo">
+                  <span class="font-weight-bold"> Nome completo:</span>
+                  <input size="40" id="responsavel-nome-completo" class="form-control" type="text"
+                         formControlName="nomeCompleto">
+                </label>
+              </div>
+
+              <div class="col">
+                <label for="responsavel-data-nascimento">
+                  <span class="font-weight-bold">Data de Nascimento</span>
+                  <input id="responsavel-data-nascimento" class="form-control" type="date" pattern="dd/MM/yyyy">
+                </label>
+              </div>
+
+              <div class="col">
+                <label for="responsavel-parentesco">
+                  <span class="font-weight-bold">Parentesco:</span>
+                  <input id="responsavel-parentesco" class="form-control" type="text" formControlName="parentesco">
+                </label>
+              </div>
+
+            </div>
+
+            <div class="row">
+
+              <div class="col-6">
+                <label for="responsavel-email" formGroupName="login">
+                  <span class="font-weight-bold">Email:</span>
+                  <input size="40" id="responsavel-email" class="form-control" type="email" formControlName="email">
+                </label>
+              </div>
+
+              <div class="col">
+                <label for="responsavel-cpf">
+                  <span class="font-weight-bold">CPF:</span>
+                  <input id="responsavel-cpf" maxlength="14" class="form-control" type="text" mask="000.000.000-00"
+                         formControlName="cpf">
+                </label>
+              </div>
+
+              <div class="col">
+                <label for="responsavel-telefone">
+                  <span class="font-weight-bold">Telefone:</span>
+                  <input id="responsavel-telefone" class="form-control" type="tel" formControlName="telefone">
+                </label>
+              </div>
+
+            </div>
+
+            <form formGroupName="endereco">
+
+              <div class="row">
+                <div class="col-6">
+                  <label for="rua">
+                    <span class="font-weight-bold">Rua:</span>
+                    <input size="40" id="rua" class="form-control" type="text" formControlName="rua">
+                  </label>
+                </div>
+                <div class="col-3">
+                  <label for="numero">
+                    <span class="font-weight-bold">Número:</span>
+                    <input id="numero" class="form-control" type="number" formControlName="numero">
+                  </label>
+                </div>
+                <div class="col-3">
+                  <label class="pr-3" for="cep">
+                    <span class="font-weight-bold">Cep:</span>
+                    <input id="cep" class="form-control" type="number" formControlName="cep">
+                  </label>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="col-6">
+                  <label for="bairro">
+                    <span class="font-weight-bold">Bairro :</span>
+                    <input size="40" id="bairro" class="form-control" type="text" formControlName="bairro">
+                  </label>
+                </div>
+                <div class="col">
+                  <label for="cidade">
+                    <span class="font-weight-bold">Cidade:</span>
+                    <input id="cidade" class="form-control" type="text" formControlName="cidade">
+                  </label>
+                </div>
+                <div class="col">
+                  <label for="estado">
+                    <span class="font-weight-bold">Estado:</span>
+                    <input id="estado" class="form-control" type="text" formControlName="estado">
+                  </label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <label for="complemento">
+                    <span class="font-weight-bold">Complemento:</span>
+                    <textarea cols="130" rows="2" id="complemento" class="form-control"
+                              formControlName="complemento"></textarea>
+                  </label>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </form>
+      </div>
     </div>
+
   </div>
 
   <div class="modal-footer">
@@ -157,4 +176,5 @@
       <span>Cadastrar <i class="fa fa-save"></i></span>
     </button>
   </div>
+
 </div>

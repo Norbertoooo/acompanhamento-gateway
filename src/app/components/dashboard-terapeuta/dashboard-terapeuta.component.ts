@@ -33,7 +33,7 @@ export class DashboardTerapeutaComponent implements OnInit {
   ahPacientesSelecionados = false;
   pesquisaPaciente: Paciente;
   campoSelecionado: any;
-  pacientesSelecionados: any;
+  pacientesSelecionados: Paciente[] = [];
   isCollapsed = false;
   formater = (x: { nomeCompleto: string }) => x.nomeCompleto;
 
@@ -54,7 +54,7 @@ export class DashboardTerapeutaComponent implements OnInit {
       map(term => term === '' ? []
         : this.pacientes.filter(v => v.nomeCompleto.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     );
-  }
+  };
 
   obterPacientes(): void {
     this.terapeutaService.listarPacientes(this.page, this.contador).subscribe((response) => {
@@ -86,7 +86,7 @@ export class DashboardTerapeutaComponent implements OnInit {
   }
 
   abrirCadastroPacienteModal(): void {
-    const modalRef = this.modal.open(CadastrarPacienteModalComponent).componentInstance;
+    const modalRef = this.modal.open(CadastrarPacienteModalComponent, {size: 'lg'}).componentInstance;
     modalRef.usuarioLogado = this.usuarioLogado;
     modalRef.event.subscribe((event) => {
       if (event) {
@@ -116,16 +116,22 @@ export class DashboardTerapeutaComponent implements OnInit {
   }
 
   selecionarTodos(event: any): any {
-    this.campoSelecionado = event.target.checked;
-    if (this.pacientesSelecionados == null) {
+    if (this.pacientesSelecionados.length === 0) {
+      this.campoSelecionado = event.target.checked;
       this.pacientesSelecionados = this.pacientes;
     } else {
-      this.pacientesSelecionados = null;
+      this.pacientesSelecionados = [];
+      this.campoSelecionado = false;
     }
   }
 
-  selecionarPaciente(paciente: Paciente): void {
-
+  selecionarPaciente(paciente: Paciente, event): void {
+    if (event.target.checked) {
+      this.pacientesSelecionados.push(paciente);
+    } else {
+      const index = this.pacientes.indexOf(paciente);
+      this.pacientesSelecionados.splice(index, 1);
+    }
   }
 
   downloadFicha(): any {

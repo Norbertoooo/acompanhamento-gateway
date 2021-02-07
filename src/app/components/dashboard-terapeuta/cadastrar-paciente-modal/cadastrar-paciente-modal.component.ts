@@ -3,7 +3,7 @@ import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import {PacienteService} from '../../../service/paciente.service';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {AlertModalService} from '../../../service/alert-modal.service';
-import {DatePipe, formatDate} from '@angular/common';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-ficha-modal',
@@ -21,30 +21,15 @@ export class CadastrarPacienteModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.configurarFormulario();
+  }
+
+  configurarFormulario(): void {
     this.formularioCadastroPaciente = this.formBuilder.group(
       {
         nomeCompleto: [],
         dataNascimento: [],
-        responsaveis: new FormArray([
-          this.formBuilder.group({
-            nomeCompleto: [],
-            cpf: [],
-            parentesco: [],
-            telefone: [],
-            login: this.formBuilder.group({
-              email: []
-            }),
-            endereco: this.formBuilder.group({
-              cep: [],
-              numero: [],
-              bairro: [],
-              rua: [],
-              cidade: [],
-              estado: [],
-              complemento: []
-            })
-          })
-        ])
+        responsaveis: new FormArray([this.adicionarResponsavelGroup()])
       }
     );
   }
@@ -64,6 +49,39 @@ export class CadastrarPacienteModalComponent implements OnInit {
 
   cancelar(): void {
     this.activeModal.dismiss('close');
+  }
+
+  adicionarResponsavelGroup(): FormGroup {
+    return this.formBuilder.group({
+      nomeCompleto: [],
+      cpf: [],
+      parentesco: [],
+      telefone: [],
+      login: this.formBuilder.group({
+        email: []
+      }),
+      endereco: this.formBuilder.group({
+        cep: [],
+        numero: [],
+        bairro: [],
+        rua: [],
+        cidade: [],
+        estado: [],
+        complemento: []
+      })
+    });
+  }
+
+  get responsavelArray(): FormArray {
+    return this.formularioCadastroPaciente.get('responsaveis') as FormArray;
+  }
+
+  adicionarResponsavel(): void {
+    this.responsavelArray.push(this.adicionarResponsavelGroup());
+  }
+
+  removerResponsavel(index: number): void {
+    this.responsavelArray.removeAt(index);
   }
 
 }

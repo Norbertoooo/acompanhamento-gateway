@@ -1,15 +1,17 @@
 <div class="modal-open">
-  <div class="modal-header">
+
+  <div class="modal-header color-modal-header" >
     <h3>Responsável</h3>
   </div>
 
   <div class="modal-body">
 
     <div>
-      <label>
-        <span></span>
-        <select class="form-control">
-          <option *ngFor="let responsavel of responsaveis">
+      <label for="responsavel-selecionado">
+        <span>Selecione o responsável:</span>
+        <select id="responsavel-selecionado" class="form-control" [(ngModel)]="responsavelSelecionado"
+                name="responsavelSelecionado">
+          <option *ngFor="let responsavel of responsaveis" [ngValue]="responsavel">
             {{responsavel.nomeCompleto}}
           </option>
         </select>
@@ -17,69 +19,75 @@
     </div>
 
     <div class="row pt-2">
-      <div class="col">
+      <div class="col-8">
         <label class="pr-3" for="responsavel-nome-completo">
           <span> Nome completo:</span>
-          <input id="responsavel-nome-completo" class="form-control" type="text">
+          <input size="35" id="responsavel-nome-completo" class="form-control" type="text"
+                 [value]="responsavelSelecionado.nomeCompleto">
         </label>
       </div>
       <div class="col">
-        <label for="responsavel-data-nascimento">
-          <span>Data de Nascimento:</span>
-          <input id="responsavel-data-nascimento" class="form-control" type="date" pattern="dd/MM/yyyy">
+        <label class="pr-3" for="responsavel-parentesco">
+          <span>Parentesco:</span>
+          <input id="responsavel-parentesco" class="form-control" type="text"
+                 [value]="responsavelSelecionado.parentesco">
         </label>
       </div>
+
     </div>
     <div class="row">
+      <div class="col-8">
+        <label class="pr-3" for="responsavel-email">
+          <span>Email:</span>
+          <input size="35" id="responsavel-email" class="form-control" type="text"
+                 [value]="responsavelSelecionado.login.email">
+        </label>
+      </div>
       <div class="col">
         <label class="pr-3" for="responsavel-telefone">
           <span>Telefone:</span>
-          <input id="responsavel-telefone" class="form-control" type="tel">
+          <input id="responsavel-telefone" class="form-control" type="tel" [value]="responsavelSelecionado.telefone">
+        </label>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="responsavel-data-nascimento">
+          <span>Data de Nascimento:</span>
+          <input id="responsavel-data-nascimento" class="form-control" type="date"
+                 [value]="responsavelSelecionado.dataNascimento">
         </label>
       </div>
       <div class="col">
         <label for="responsavel-cpf">
           <span>CPF:</span>
-          <input id="responsavel-cpf" maxlength="14" class="form-control" type="text">
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <label class="pr-3" for="responsavel-parentesco">
-          <span>Parentesco:</span>
-          <input id="responsavel-parentesco" class="form-control" type="text">
-        </label>
-      </div>
-
-      <div class="col">
-        <label class="pr-3" for="responsavel-email">
-          <span>Email:</span>
-          <input id="responsavel-email" class="form-control" type="text">
+          <input id="responsavel-cpf" maxlength="14" class="form-control" type="text"
+                 [value]="responsavelSelecionado.cpf | mask: '000.000.000-00'">
         </label>
       </div>
 
     </div>
   </div>
 
-  <hr>
-
-  <div class="modal-header pt-0">
+  <div class="modal-header color-modal-header">
     <h3>Endereço</h3>
   </div>
+
   <div class="modal-body">
 
     <div class="row">
       <div class="col">
         <label class="pr-3" for="cep">
           <span>Cep:</span>
-          <input id="cep" class="form-control" type="number">
+          <input id="cep" class="form-control" type="text"
+                 value="{{responsavelSelecionado.endereco.cep | mask: '00000-000'}}">
         </label>
       </div>
       <div class="col">
         <label for="numero">
           <span>Número da casa/prédio:</span>
-          <input id="numero" class="form-control" type="number">
+          <input id="numero" class="form-control" type="number" [value]="responsavelSelecionado.endereco.numero">
         </label>
       </div>
     </div>
@@ -88,13 +96,13 @@
       <div class="col">
         <label class="pr-3" for="rua">
           <span>Rua:</span>
-          <input id="rua" class="form-control" type="text">
+          <input id="rua" class="form-control" type="text" [value]="responsavelSelecionado.endereco.rua">
         </label>
       </div>
       <div class="col">
         <label for="bairro">
           <span>Bairro:</span>
-          <input id="bairro" class="form-control" type="text">
+          <input id="bairro" class="form-control" type="text" [value]="responsavelSelecionado.endereco.bairro">
         </label>
       </div>
     </div>
@@ -103,13 +111,13 @@
       <div class="col">
         <label class="pr-3" for="rua">
           <span>Cidade:</span>
-          <input id="cidade" class="form-control" type="text">
+          <input id="cidade" class="form-control" type="text" [value]="responsavelSelecionado.endereco.cidade">
         </label>
       </div>
       <div class="col">
         <label for="bairro">
           <span>Estado:</span>
-          <input id="estado" class="form-control" type="text">
+          <input id="estado" class="form-control" type="text" [value]="responsavelSelecionado.endereco.estado">
         </label>
       </div>
     </div>
@@ -118,11 +126,14 @@
       <div class="col">
         <label for="detalhes">
           <span>Detalhes:</span>
-          <textarea cols="60" rows="3" id="detalhes" class="form-control"></textarea>
+          <textarea cols="60" rows="3" id="detalhes" class="form-control"
+                    [value]="responsavelSelecionado.endereco.complemento">
+          </textarea>
         </label>
       </div>
     </div>
   </div>
+
   <div class="modal-footer">
     <button class="btn btn-danger" (click)="cancelar()">
       <span>Cancelar <i class="fa fa-times"></i></span>
@@ -131,4 +142,5 @@
       <span>Alterar <i class="fa fa-save"></i></span>
     </button>
   </div>
+
 </div>

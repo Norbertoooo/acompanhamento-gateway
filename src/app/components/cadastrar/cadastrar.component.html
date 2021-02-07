@@ -6,7 +6,7 @@
     </div>
     <div class="col pt-5 text-center">
 
-      <div class="pb-2">
+      <div>
         <h1>Bem vindo a plataforma web da R.A.F.A</h1>
         <h3> Cadastrar novo usuário</h3>
       </div>
@@ -81,23 +81,24 @@
           <form formGroupName="endereco">
 
             <div class="row">
-              <div class="col">
+              <div class="col-4">
                 <label for="rua"></label>
                 <input id="rua" type=text class="form-control" placeholder="Rua" formControlName="rua">
+              </div>
+              <div class="col-2">
+                <label for="numero"></label>
+                <input id="numero" type=number class="form-control" placeholder="Número" formControlName="numero">
               </div>
               <div class="col">
                 <label for="bairro"></label>
                 <input id="bairro" type=text class="form-control" placeholder="Bairro" formControlName="bairro">
               </div>
               <div class="col">
-                <label for="numero"></label>
-                <input id="numero" type=number class="form-control" placeholder="Número" formControlName="numero">
-              </div>
-              <div class="col">
                 <label for="cep"></label>
                 <input id="cep" type=number class="form-control" placeholder="CEP" formControlName="cep">
               </div>
             </div>
+
             <div class="row">
               <div class="col">
                 <label for="cidade"></label>
@@ -105,7 +106,9 @@
               </div>
               <div class="col">
                 <label for="estado"></label>
-                <input id="estado" type=text class="form-control" placeholder="Estado" formControlName="estado">
+                <select id="estado" class="form-control" formControlName="estado">
+                  <option *ngFor="let estado of estados" [value]="estado">{{estado}}</option>
+                </select>
               </div>
             </div>
 

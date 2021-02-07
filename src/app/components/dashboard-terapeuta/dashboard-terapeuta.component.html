@@ -16,7 +16,7 @@
           <button type=submit class="btn btn-primary mr-3" (click)="abrirCadastroPacienteModal()">
             <span><i class="fa fa-plus mr-2"></i> Cadastrar Paciente </span>
           </button>
-          <button type=submit class="btn btn-danger" [disabled]="pacientesSelecionados == null"
+          <button type=submit class="btn btn-danger" [disabled]="pacientesSelecionados == null || pacientesSelecionados.length == 0   "
                   (click)="abrirExcluirPacienteModal()">
             <span><i class="fa fa-trash mr-2"></i> Excluir Paciente </span>
           </button>
@@ -83,10 +83,10 @@
             <th scope="row">
               <label>
                 <input type="checkbox" [(ngModel)]="campoSelecionado" name="campoSelecionado"
-                       (change)="selecionarPaciente(paciente)">
+                       (change)="selecionarPaciente(paciente, $event)">
               </label>
             </th>
-            <th scope="row"> {{paciente.id}} </th>
+            <th> {{paciente.id}} </th>
             <td><span>{{paciente.nomeCompleto}}</span></td>
             <td> {{paciente.dataNascimento}} </td>
             <td>

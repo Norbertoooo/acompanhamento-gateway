@@ -3,3 +3,7 @@
   display: flex;
   justify-content: center;
 }
+.color-modal-header {
+  background-color: #499BF2;
+  color: white;
+}
