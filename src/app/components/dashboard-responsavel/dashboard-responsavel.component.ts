@@ -1,5 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Responsavel} from '../../model/responsavel.model';
+import {ResponsavelService} from '../../service/responsavel.service';
+import {AlertModalService} from '../../service/alert-modal.service';
 
 @Component({
   selector: 'app-dashboard-responsavel',
@@ -8,12 +10,14 @@ import {Responsavel} from '../../model/responsavel.model';
 })
 export class DashboardResponsavelComponent implements OnInit {
 
-  @Input() responsavel: Responsavel;
+  responsavel: Responsavel = {} as Responsavel;
 
-  constructor() {
+  constructor(private responsavelService: ResponsavelService, private alertService: AlertModalService) {
   }
 
   ngOnInit(): void {
+    this.responsavelService.buscarResponsavel()
+      .subscribe(value => this.responsavel = value, error => this.alertService.exibirErro(error));
   }
 
 }

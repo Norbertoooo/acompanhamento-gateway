@@ -28,6 +28,7 @@ import { DashboardResponsavelComponent } from './components/dashboard-responsave
 import { DadosTerapeutaComponent } from './components/dados-terapeuta/dados-terapeuta.component';
 import { ExcluirPacienteModalComponent } from './components/dashboard-terapeuta/excluir-paciente-modal/excluir-paciente-modal.component';
 import {FichaService} from './service/ficha.service';
+import {ResponsavelService} from './service/responsavel.service';
 
 registerLocaleData(localePtBr, 'pt-BR');
 
@@ -66,7 +67,7 @@ export const maskConfig: Partial<IConfig> | (() => Partial<IConfig>) = {};
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: LOCALE_ID, useValue: 'pt-BR'},
-    AuthenticationService, PacienteService, NgbActiveModal, NgbModal, FichaService
+    AuthenticationService, PacienteService, NgbActiveModal, NgbModal, FichaService, ResponsavelService
   ],
   bootstrap: [AppComponent]
 })

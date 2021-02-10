@@ -10,11 +10,9 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router, private authenticationService: AuthenticationService, private alertService: AlertModalService) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot,
-              state: RouterStateSnapshot): Observable<boolean> | boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
     const token = this.authenticationService.currentUserValue;
-
-    if (token !== null) {
+    if (token !== null && route.data.perfil === token.login.perfil) {
       return true;
     } else {
       this.alertService.exibirErro('Por favor, efetue o login!');

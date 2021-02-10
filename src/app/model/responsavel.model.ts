@@ -9,6 +9,5 @@ export interface Responsavel {
   parentesco: string;
   endereco: Endereco;
   login: Login;
-  loginEmail: string;
   dataNascimento: string;
 }

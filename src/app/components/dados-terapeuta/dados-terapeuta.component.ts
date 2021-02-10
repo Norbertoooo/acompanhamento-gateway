@@ -47,4 +47,5 @@ export class DadosTerapeutaComponent implements OnInit {
   editarTerapeuta(): void {
     this.bloqueado === true ? this.bloqueado = false : this.bloqueado = true;
   }
+
 }

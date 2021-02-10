@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, config, Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
@@ -24,7 +24,6 @@ export class AuthenticationService {
     return this.http.post<any>(`${environment.apiUrlBase}/autenticar`, login)
       .pipe(map(user => {
         console.log(user);
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
         sessionStorage.setItem('token', JSON.stringify(user));
         this.currentUserSubject.next(user);
         return user;
@@ -32,8 +31,11 @@ export class AuthenticationService {
   }
 
   logout(): void {
-    // remove user from local storage and set current user to null
     sessionStorage.removeItem('token');
     this.currentUserSubject.next(null);
+  }
+
+  getUsuarioLogado(): string {
+    return sessionStorage.getItem('emailLogado');
   }
 }

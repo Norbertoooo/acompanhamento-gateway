@@ -4,9 +4,14 @@
     <button class="btn btn-info mr-3" type="submit" (click)="sobre()">
       <span><i class="fa fa-info-circle mr-1"></i> Sobre o projeto </span>
     </button>
-    <button *ngIf="usuarioLogado()" class="btn btn-info mr-3" type="submit" [routerLink]="['dashboard-terapeuta']">
+    <button *ngIf="usuarioLogadoResponsavel()" class="btn btn-info mr-3" type="submit"
+            [routerLink]="['dashboard-responsavel']">
       <span><i class="fa fa-bars mr-1"></i> Dashboard </span>
-      </button>
+    </button>
+    <button *ngIf="usuarioLogadoTerapeuta()" class="btn btn-info mr-3" type="submit"
+            [routerLink]="['dashboard-terapeuta']">
+      <span><i class="fa fa-bars mr-1"></i> Dashboard </span>
+    </button>
     <button *ngIf="usuarioLogado()" class="btn btn-info" type="submit" (click)="logout()">
       <span><i class="fa fa-sign-out mr-1"></i> Sair </span>
     </button>
