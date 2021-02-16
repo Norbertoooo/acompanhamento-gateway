@@ -13,6 +13,10 @@ export class PacienteService {
   constructor(private http: HttpClient) {
   }
 
+  buscarPacientes(page, contador): Observable<any> {
+    return this.http.get(this.pacienteUrl.concat('/admin/' + page + '/' + contador));
+  }
+
   cadastrarPaciente(paciente: any): Observable<any> {
     return this.http.post(this.pacienteUrl, paciente).pipe();
   }

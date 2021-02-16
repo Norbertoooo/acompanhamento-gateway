@@ -6,14 +6,15 @@ import {AuthGuard} from './helpers';
 import {SobreProjetoComponent} from './components/sobre-projeto/sobre-projeto.component';
 import {CadastrarComponent} from './components/cadastrar/cadastrar.component';
 import {DashboardResponsavelComponent} from './components/dashboard-responsavel/dashboard-responsavel.component';
+import {DashboardAdministradorComponent} from './components/dashboard-administrador/dashboard-administrador.component';
 
 const routes: Routes = [
   {path: 'cadastrar', component: CadastrarComponent},
   {path: '', component: LoginComponent},
   {path: 'sobre', component: SobreProjetoComponent},
   {path: 'dashboard-terapeuta', component: DashboardTerapeutaComponent, canActivate: [AuthGuard], data: {perfil: 'TERAPEUTA'}},
-  {path: 'dashboard-responsavel', component: DashboardResponsavelComponent, canActivate: [AuthGuard], data: {perfil: 'RESPONSAVEL'}}
-
+  {path: 'dashboard-responsavel', component: DashboardResponsavelComponent, canActivate: [AuthGuard], data: {perfil: 'RESPONSAVEL'}},
+  {path: 'dashboard-administrador', component: DashboardAdministradorComponent, canActivate: [AuthGuard], data: {perfil: 'ADMINISTRADOR'}}
 ];
 
 @NgModule({

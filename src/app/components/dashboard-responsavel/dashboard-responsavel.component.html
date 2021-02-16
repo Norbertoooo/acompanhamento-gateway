@@ -1,75 +1,55 @@
-<div class="container-fluid pt-4">
-  <div class="card">
-    <div class="card-header">
-        <h3>Dados do Responsável</h3>
-    </div>
-    <div class="card-body">
-      <form>
+<div>
 
-        <div class="row">
-          <div class="col-4">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text">Nome Completo</div>
-              </div>
-              <input id="terapeuta-nome-completo" class="form-control" readonly="readonly"
-                     [value]="responsavel.nomeCompleto">
-            </div>
-          </div>
+  <app-dados-responsavel [responsavel]="responsavel"></app-dados-responsavel>
 
-          <div class="col">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text">Parentesco</div>
-                <input size="40" class="form-control" readonly="readonly" [value]="responsavel.parentesco">
-              </div>
-            </div>
-          </div>
-
-          <div class="col-3">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text">Data de Nascimento</div>
-                <input class="form-control" readonly="readonly"
-                       [value]="responsavel.dataNascimento | date: 'dd/MM/yyyy' ">
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="row pt-3">
-
-          <div class="col-4">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text">CPF</div>
-                <input size="21" maxlength="14" type="text" class="form-control" readonly="readonly"
-                       [value]="responsavel.cpf">
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text">Email</div>
-                <input size="50" class="form-control" readonly="readonly" [value]="responsavel.login.email">
-              </div>
-            </div>
-          </div>
-
-          <div class="col-3">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text">Telefone</div>
-                <input size="32" class="form-control" readonly="readonly" [value]="responsavel.telefone">
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </form>
+  <div class="container-fluid pt-3">
+    <div class="card">
+      <div class="card-header">
+        <h3>Lista de Protegidos</h3>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col"><label>
+              <input type="checkbox" name="campoSelecionado">
+            </label></th>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Data de Nascimento</th>
+            <th scope="col">Responsável</th>
+            <th scope="col">Exportar Ficha</th>
+          </tr>
+          </thead>
+          <tbody *ngIf="listaPacientes.length !== 0">
+          <tr *ngFor="let paciente of listaPacientes">
+            <th scope="row">
+              <label>
+                <input type="checkbox" name="campoSelecionado">
+              </label>
+            </th>
+            <th> {{paciente.id}} </th>
+            <td><span> {{paciente.nomeCompleto}}</span></td>
+            <td> {{paciente.dataNascimento}} </td>
+            <td>
+              <button class="btn btn-link text-center ml-3 tamanho-icone">
+                <i class="fa fa-female"></i>
+                <i class="fa fa-male"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-link tamanho-icone">
+                <i class="fa fa-google"></i>
+              </button>
+              <button class="btn btn-link tamanho-icone">
+                <i class="fa fa-file-pdf-o"></i>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
+
 </div>

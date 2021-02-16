@@ -2,19 +2,20 @@ import {Component, OnInit} from '@angular/core';
 import {DashboardTerapeutaService} from './dashboard-terapeuta.service';
 import {Paciente} from '../../model/paciente.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {PacienteModalComponent} from './paciente-modal/paciente-modal.component';
-import {FichaModalComponent} from './ficha-modal/ficha-modal.component';
-import {ResponsavelModalComponent} from './responsavel-modal/responsavel-modal.component';
+
 import {ActivatedRoute} from '@angular/router';
 import {Terapeuta} from '../../model/terapeuta.model';
-import {CadastrarPacienteModalComponent} from './cadastrar-paciente-modal/cadastrar-paciente-modal.component';
 import {PacienteService} from '../../service/paciente.service';
 import {Observable} from 'rxjs';
 import {debounceTime, map} from 'rxjs/operators';
 import {Responsavel} from '../../model/responsavel.model';
-import {ExcluirPacienteModalComponent} from './excluir-paciente-modal/excluir-paciente-modal.component';
+import {ExcluirPacienteModalComponent} from '../modals/excluir-paciente-modal/excluir-paciente-modal.component';
 import {FichaService} from '../../service/ficha.service';
 import {AlertModalService} from '../../service/alert-modal.service';
+import {ResponsavelModalComponent} from '../modals/responsavel-modal/responsavel-modal.component';
+import {FichaModalComponent} from '../modals/ficha-modal/ficha-modal.component';
+import {PacienteModalComponent} from '../modals/paciente-modal/paciente-modal.component';
+import {CadastrarPacienteModalComponent} from '../modals/cadastrar-paciente-modal/cadastrar-paciente-modal.component';
 
 @Component({
   selector: 'app-dashboard-terapeuta',

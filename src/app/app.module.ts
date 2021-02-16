@@ -8,11 +8,11 @@ import {LoginComponent} from './components/login/login.component';
 import {PrincipalComponent} from './template/principal/principal.component';
 import {NavbarComponent} from './template/navbar/navbar.component';
 import {SobreProjetoComponent} from './components/sobre-projeto/sobre-projeto.component';
-import {PacienteModalComponent} from './components/dashboard-terapeuta/paciente-modal/paciente-modal.component';
+import {PacienteModalComponent} from './components/modals/paciente-modal/paciente-modal.component';
 import {AlertComponent} from './shared/alert/alert.component';
-import {ResponsavelModalComponent} from './components/dashboard-terapeuta/responsavel-modal/responsavel-modal.component';
-import {CadastrarPacienteModalComponent} from './components/dashboard-terapeuta/cadastrar-paciente-modal/cadastrar-paciente-modal.component';
-import {FichaModalComponent} from './components/dashboard-terapeuta/ficha-modal/ficha-modal.component';
+import {ResponsavelModalComponent} from './components/modals/responsavel-modal/responsavel-modal.component';
+import {CadastrarPacienteModalComponent} from './components/modals/cadastrar-paciente-modal/cadastrar-paciente-modal.component';
+import {FichaModalComponent} from './components/modals/ficha-modal/ficha-modal.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -26,9 +26,13 @@ import {PacienteService} from './service/paciente.service';
 import localePtBr from '@angular/common/locales/pt';
 import { DashboardResponsavelComponent } from './components/dashboard-responsavel/dashboard-responsavel.component';
 import { DadosTerapeutaComponent } from './components/dados-terapeuta/dados-terapeuta.component';
-import { ExcluirPacienteModalComponent } from './components/dashboard-terapeuta/excluir-paciente-modal/excluir-paciente-modal.component';
+import { ExcluirPacienteModalComponent } from './components/modals/excluir-paciente-modal/excluir-paciente-modal.component';
 import {FichaService} from './service/ficha.service';
 import {ResponsavelService} from './service/responsavel.service';
+import { DadosResponsavelComponent } from './components/dados-responsavel/dados-responsavel.component';
+import {NgxWebstorageModule} from 'ngx-webstorage';
+import { DashboardAdministradorComponent } from './components/dashboard-administrador/dashboard-administrador.component';
+import {TerapeutaService} from './service/terapeuta.service';
 
 registerLocaleData(localePtBr, 'pt-BR');
 
@@ -51,7 +55,9 @@ export const maskConfig: Partial<IConfig> | (() => Partial<IConfig>) = {};
     AlertComponent,
     DashboardResponsavelComponent,
     DadosTerapeutaComponent,
-    ExcluirPacienteModalComponent
+    ExcluirPacienteModalComponent,
+    DadosResponsavelComponent,
+    DashboardAdministradorComponent
   ],
   imports: [
     BrowserModule,
@@ -61,13 +67,14 @@ export const maskConfig: Partial<IConfig> | (() => Partial<IConfig>) = {};
     HttpClientModule,
     NgbModule,
     NgxPaginationModule,
-    NgxMaskModule.forRoot(maskConfig)
+    NgxMaskModule.forRoot(maskConfig),
+    NgxWebstorageModule.forRoot(),
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: LOCALE_ID, useValue: 'pt-BR'},
-    AuthenticationService, PacienteService, NgbActiveModal, NgbModal, FichaService, ResponsavelService
+    AuthenticationService, PacienteService, NgbActiveModal, NgbModal, FichaService, ResponsavelService, TerapeutaService
   ],
   bootstrap: [AppComponent]
 })

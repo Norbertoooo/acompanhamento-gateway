@@ -1,0 +1,143 @@
+<div class="container-fluid pt-4">
+  <div class="card">
+    <div class="card-header">
+      <h3>Bem vindo, Administrador</h3>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid pt-4">
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col">
+          <h3>Lista de Terapeutas</h3>
+        </div>
+        <div class="col text-right">
+          <button type=button class="btn btn-link mr-3 text-center" (click)="terapeutaCollapse.toggle()" [attr.aria-expanded]="!terapeutaIsCollapsed" >
+            <span *ngIf="terapeutaIsCollapsed"><i class="fa fa-eye tamanho-icone"></i></span>
+            <span *ngIf="!terapeutaIsCollapsed"><i class="fa fa-eye-slash tamanho-icone"></i></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body" #terapeutaCollapse="ngbCollapse" [(ngbCollapse)]="terapeutaIsCollapsed">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome Completo</th>
+            <th scope="col">Data de Nascimento</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let terapeuta of terapeutas | paginate: {itemsPerPage: contador, currentPage: page + 1, totalItems: total }">
+            <th> {{terapeuta.id}} </th>
+            <td><span>{{terapeuta.nomeCompleto}}</span></td>
+            <td> {{terapeuta.dataNascimento}} </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="text-center">
+          <pagination-controls
+            (pageChange)="mudarPaginaTerapeuta($event)" directionLinks="true" responsive="true" previousLabel="Anterior"
+            nextLabel="Próximo">
+          </pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid pt-4">
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col">
+          <h3>Lista de Pacientes</h3>
+        </div>
+        <div class="col text-right">
+          <button type=button class="btn btn-link mr-3 text-center" (click)="pacienteCollapse.toggle()" [attr.aria-expanded]="!pacienteIsCollapsed" >
+            <span *ngIf="pacienteIsCollapsed"><i class="fa fa-eye tamanho-icone"></i></span>
+            <span *ngIf="!pacienteIsCollapsed"><i class="fa fa-eye-slash tamanho-icone"></i></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body" #pacienteCollapse="ngbCollapse" [(ngbCollapse)]="pacienteIsCollapsed">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome Completo</th>
+            <th scope="col">Data de Nascimento</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr
+            *ngFor="let paciente of pacientes | paginate: {itemsPerPage: contador, currentPage: page + 1, totalItems: total }">
+            <th> {{paciente.id}} </th>
+            <td><span>{{paciente.nomeCompleto}}</span></td>
+            <td> {{paciente.dataNascimento}} </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="text-center">
+          <pagination-controls
+            (pageChange)="mudarPaginaPaciente($event)" directionLinks="true" responsive="true" previousLabel="Anterior"
+            nextLabel="Próximo">
+          </pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid pt-4">
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col">
+          <h3>Lista de Responsáveis</h3>
+        </div>
+        <div class="col text-right">
+          <button type=button class="btn btn-link mr-3 text-center" (click)="responsavelCollapse.toggle()" [attr.aria-expanded]="!responsavelIsCollapsed" >
+            <span *ngIf="responsavelIsCollapsed"><i class="fa fa-eye tamanho-icone"></i></span>
+            <span *ngIf="!responsavelIsCollapsed"><i class="fa fa-eye-slash tamanho-icone"></i></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body" #responsavelCollapse="ngbCollapse" [(ngbCollapse)]="responsavelIsCollapsed">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome Completo</th>
+            <th scope="col">Data de Nascimento</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr
+            *ngFor="let responsavel of responsaveis | paginate: {itemsPerPage: contador, currentPage: page + 1, totalItems: total }">
+            <th> {{responsavel.id}} </th>
+            <td><span>{{responsavel.nomeCompleto}}</span></td>
+            <td> {{responsavel.dataNascimento}} </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="text-center">
+          <pagination-controls
+            (pageChange)="mudarPaginaResponsavel($event)" directionLinks="true" responsive="true" previousLabel="Anterior"
+            nextLabel="Próximo">
+          </pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

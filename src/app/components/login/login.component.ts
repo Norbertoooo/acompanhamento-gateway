@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {AuthenticationService} from '../../helpers/authentication.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AlertModalService} from '../../service/alert-modal.service';
+import {LocalStorageService} from 'ngx-webstorage';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
               private formBuilder: FormBuilder,
+              private storageService: LocalStorageService,
               private alertService: AlertModalService) {
   }
 
@@ -28,14 +30,17 @@ export class LoginComponent implements OnInit {
 
   logar(): void {
     console.log(this.formularioLogin.value);
-    this.authenticationService.login(this.formularioLogin.value).subscribe(
-      (result) => {
+    this.authenticationService.login(this.formularioLogin.value)
+      .subscribe( (result) => {
         console.log(result);
         this.router.navigateByUrl('/dashboard-terapeuta', {state: {result}}).then();
         if (result.login.perfil === 'RESPONSAVEL') {
           this.router.navigateByUrl('/dashboard-responsavel', {state: {result}}).then();
         }
-        sessionStorage.setItem('emailLogado', result.login.email);
+        if (result.login.perfil === 'ADMINISTRADOR') {
+          this.router.navigateByUrl('/dashboard-administrador', {state: {result}}).then();
+        }
+        this.storageService.store('emailLogado', result.login.email);
       }, (error) => {
         this.alertService.exibirErro(error);
       }
