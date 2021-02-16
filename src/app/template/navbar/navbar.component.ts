@@ -32,6 +32,11 @@ export class NavbarComponent implements OnInit {
     return token !== null && token.includes('TERAPEUTA');
   }
 
+  usuarioLogadoAdministrador(): boolean {
+    const token = sessionStorage.getItem('token');
+    return token !== null && token.includes('ADMINISTRADOR');
+  }
+
   logout(): void {
     this.authenticationService.logout();
     this.router.navigate(['/']).then();

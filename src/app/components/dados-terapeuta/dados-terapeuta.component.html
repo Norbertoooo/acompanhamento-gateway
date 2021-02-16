@@ -15,7 +15,7 @@
         <button type=submit class="btn btn-primary mr-3" (click)="editarTerapeuta()">
           <span><i class="fa fa-edit mr-2"></i> Editar Informações </span>
         </button>
-        <button [disabled]="bloqueado" type=submit class="btn btn-primary">
+        <button [disabled]="bloqueado" type=submit class="btn btn-primary" (click)="salvarAlteracoes()">
           <span><i class="fa fa-save mr-2"></i> Salvar Alterações</span>
         </button>
       </div>
@@ -32,8 +32,8 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text">Nome Completo</div>
-                <input size="55" id="terapeuta-nome-completo" class="form-control" [readOnly]="bloqueado"
-                   [value]="terapeuta.nomeCompleto">
+                <input size="55" id="terapeuta-nome-completo" class="form-control" [readOnly]="bloqueado" aria-label="nomeCompleto"
+                   [ngModel]="terapeuta.nomeCompleto" formControlName="nomeCompleto">
             </div>
           </div>
         </div>
@@ -42,7 +42,8 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text">Especialidade</div>
-              <input size="40" class="form-control" [readOnly]="bloqueado" [value]="terapeuta.especialidade">
+              <input size="40" class="form-control" [readOnly]="bloqueado" aria-label="especialidade"
+                     [ngModel]="terapeuta.especialidade" formControlName="especialidade">
             </div>
           </div>
         </div>
@@ -51,7 +52,7 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text">Data de Nascimento</div>
-              <input class="form-control" [readOnly]="bloqueado"
+              <input class="form-control" [readOnly]="bloqueado" aria-label="dataNascimento"
                      [value]="terapeuta.dataNascimento | date: 'dd/MM/yyyy' ">
             </div>
           </div>
@@ -61,7 +62,7 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text">CPF</div>
-              <input size="21" maxlength="14" type="text" class="form-control" [readOnly]="bloqueado"
+              <input size="21" maxlength="14" type="text" class="form-control" aria-label="cpf" [readOnly]="bloqueado"
                      value="{{terapeuta.cpf | mask: '000.000.000-00'}}">
             </div>
           </div>

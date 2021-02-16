@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrlBase: 'https://rafa-acompanhamento-api.herokuapp.com/api'
 };

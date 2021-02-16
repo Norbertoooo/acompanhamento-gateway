@@ -43,7 +43,7 @@
             <button type="button" class="btn btn-primary mr-2" (click)="adicionarResponsavel()">
               <span><i class="fa fa-plus mr-1"></i> Adicionar </span>
             </button>
-            <button type="button" class="btn btn-danger">
+            <button type="button" class="btn btn-danger" (click)="removerResponsavel">
               <span><i class="fa fa-trash mr-1 "></i> Remover </span>
             </button>
           </div>
@@ -172,7 +172,7 @@
     <button class="btn btn-danger" (click)="cancelar()">
       <span>Cancelar <i class="fa fa-times"></i></span>
     </button>
-    <button class="btn btn-primary" (click)="cadastar()">
+    <button class="btn btn-primary" (click)="cadastrar()">
       <span>Cadastrar <i class="fa fa-save"></i></span>
     </button>
   </div>

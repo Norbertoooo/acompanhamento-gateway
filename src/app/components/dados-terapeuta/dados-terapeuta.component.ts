@@ -9,7 +9,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class DadosTerapeutaComponent implements OnInit {
 
-  @Input() terapeuta = {} as Terapeuta;
+  @Input() terapeuta: Terapeuta;
   bloqueado = true;
   formularioCadastro: FormGroup;
   isCollapsed = false;
@@ -46,6 +46,10 @@ export class DadosTerapeutaComponent implements OnInit {
 
   editarTerapeuta(): void {
     this.bloqueado === true ? this.bloqueado = false : this.bloqueado = true;
+  }
+
+  salvarAlteracoes(): void {
+    console.log(this.formularioCadastro.value);
   }
 
 }

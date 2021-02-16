@@ -5,6 +5,12 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {AlertModalService} from '../../../service/alert-modal.service';
 import {formatDate} from '@angular/common';
 
+class Errinho {
+  mensagem: '';
+  data: '';
+  url: '';
+}
+
 @Component({
   selector: 'app-ficha-modal',
   templateUrl: './cadastrar-paciente-modal.component.html',
@@ -34,16 +40,17 @@ export class CadastrarPacienteModalComponent implements OnInit {
     );
   }
 
-  cadastar(): void {
+  cadastrar(): void {
     console.log(this.formularioCadastroPaciente.value);
     this.formularioCadastroPaciente.controls.dataNascimento.setValue(formatDate(this.formularioCadastroPaciente.get('dataNascimento').value, 'dd/MM/yyyy', 'pt-BR'));
     this.pacienteService.cadastrarPaciente(this.formularioCadastroPaciente.value)
-      .subscribe(() => {
+      .subscribe((valeu) => {
         this.alertService.exibirSucesso('Paciente cadastrado com sucesso!');
         this.event.emit('true');
         this.activeModal.dismiss('close');
-      }, error => {
-        this.alertService.exibirErro(error);
+      }, (error: Errinho) => {
+        console.log(error);
+        this.alertService.exibirErro(error.mensagem);
       });
   }
 
