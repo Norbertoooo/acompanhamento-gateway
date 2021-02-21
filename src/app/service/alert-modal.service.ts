@@ -21,7 +21,11 @@ export class AlertModalService {
   }
 
   exibirErro(mensagem: string): void {
-    this.exibirAlerta(mensagem, 'danger');
+    if (mensagem === undefined || mensagem === null) {
+      this.exibirAlerta('Um erro aconteceu, tente novamente!', 'danger');
+    } else {
+      this.exibirAlerta(mensagem, 'danger');
+    }
   }
 
   exibirSucesso(mensagem: string): void {

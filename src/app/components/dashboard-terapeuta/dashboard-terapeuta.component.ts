@@ -27,7 +27,6 @@ export class DashboardTerapeutaComponent implements OnInit {
   pacientes: Paciente[] = [];
   paciente: Paciente;
   usuarioLogado: string;
-  terapeuta: Terapeuta;
   contador = 5;
   page = 0;
   total: number;
@@ -46,7 +45,6 @@ export class DashboardTerapeutaComponent implements OnInit {
   ngOnInit(): void {
     this.usuarioLogado = sessionStorage.getItem('emailLogado');
     this.obterPacientes();
-    this.obterDadosTerapeuta();
   }
 
   buscar = (text$: Observable<string>) => {
@@ -67,10 +65,6 @@ export class DashboardTerapeutaComponent implements OnInit {
 
   cadastrarPaciente(): void {
     this.terapeutaService.cadastrarPaciente(this.paciente, this.usuarioLogado).subscribe();
-  }
-
-  obterDadosTerapeuta(): void {
-    this.terapeutaService.buscarDadosTerapeuta().subscribe((response) => this.terapeuta = response);
   }
 
   abrirResponsavelModal(responsaveis: Responsavel[]): void {

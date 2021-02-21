@@ -8,13 +8,21 @@ import {Observable} from 'rxjs';
 })
 export class TerapeutaService {
 
-  terapeutaUrl = environment.apiUrlBase.concat('/terapeutas');
+  private terapeutaUrl = environment.apiUrlBase.concat('/terapeutas');
 
   constructor(private http: HttpClient) {
   }
 
   buscarTerapeutas(page, contador): Observable<any> {
     return this.http.get(this.terapeutaUrl.concat('/' + page + '/' + contador));
+  }
+
+  buscarDadosTerapeuta(): Observable<any>  {
+    return this.http.get(this.terapeutaUrl);
+  }
+
+  atualizarTerapeuta(terapeuta: any): Observable<any> {
+    return this.http.put(this.terapeutaUrl, terapeuta);
   }
 
 }

@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Terapeuta} from '../../model/terapeuta.model';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {TerapeutaService} from '../../service/terapeuta.service';
+import {AlertModalService} from '../../service/alert-modal.service';
 
 @Component({
   selector: 'app-dados-terapeuta',
@@ -9,47 +10,40 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class DadosTerapeutaComponent implements OnInit {
 
-  @Input() terapeuta: Terapeuta;
-  bloqueado = true;
-  formularioCadastro: FormGroup;
+  terapeuta: Terapeuta = {} as Terapeuta;
+  isBlocked = true;
   isCollapsed = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private terapeutaService: TerapeutaService, private alertService: AlertModalService) {
   }
 
   ngOnInit(): void {
-    this.formularioCadastro = this.formBuilder.group(
-      {
-        nomeCompleto: [],
-        crfa: [],
-        dataNascimento: [],
-        telefone: [],
-        formacao: [],
-        especialidade: [],
-        cpf: [],
-        login: this.formBuilder.group(
-          {
-            email: [[Validators.required, Validators.email]],
-          }
-        ),
-        endereco: this.formBuilder.group({
-          cep: [],
-          rua: [],
-          bairro: [],
-          cidade: [],
-          estado: [],
-          complemento: [],
-          numero: []
-        })
-      });
+    this.obterDadosTerapeuta();
   }
 
   editarTerapeuta(): void {
-    this.bloqueado === true ? this.bloqueado = false : this.bloqueado = true;
+    this.isBlocked === true ? this.isBlocked = false : this.isBlocked = true;
+  }
+
+  obterDadosTerapeuta(): void {
+    this.terapeutaService.buscarDadosTerapeuta()
+      .subscribe((response: Terapeuta) => {
+        this.terapeuta = response;
+      }, error => {
+        this.alertService.exibirErro(error);
+      });
   }
 
   salvarAlteracoes(): void {
-    console.log(this.formularioCadastro.value);
+    this.terapeutaService.atualizarTerapeuta(this.terapeuta)
+      .subscribe(response => {
+        this.terapeuta = response;
+        this.isBlocked = true;
+        this.obterDadosTerapeuta();
+        this.alertService.exibirSucesso('Informações alteradas com sucesso!');
+      }, (error) => {
+        this.alertService.exibirErro(error);
+      });
   }
 
 }

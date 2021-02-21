@@ -9,7 +9,6 @@ import {Observable} from 'rxjs';
 export class DashboardTerapeutaService {
 
   pacienteUrl = environment.apiUrlBase.concat('/pacientes/');
-  terapeutaUrl = environment.apiUrlBase.concat('/terapeutas/');
 
   constructor(private http: HttpClient) {
   }
@@ -19,10 +18,7 @@ export class DashboardTerapeutaService {
   }
 
   listarPacientes(page: number, count: number): Observable<any> {
-    return this.http.get(this.pacienteUrl.concat(page + '/' + count)).pipe( (response) => response);
+    return this.http.get(this.pacienteUrl.concat(page + '/' + count)).pipe((response) => response);
   }
 
-  buscarDadosTerapeuta(): Observable<any>  {
-    return this.http.get(this.terapeutaUrl).pipe( (response) => response);
-  }
 }
